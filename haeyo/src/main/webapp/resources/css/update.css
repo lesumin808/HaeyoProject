@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#contents {
+	position: absolute;
+	width: 700px;
+	height: 700px;
+	left: 50%;
+	top: 15%;
+	background: rgba(196, 196, 196, 0.1);
+	border-radius: 30px;
+	transform: translate(-50%, 10%);
+	font-size:15px;
+}
+#updateheader {
+	position: absolute;
+	top: -5%;
+	left: 3%;
+	font-size: 20px;
+	font-weight: bold;
+}
+#updateForm {
+	margin:50px;
+}
+#footer {
+	position: absolute;
+	bottom: -800px;
+}
+#updatebutton {
+	position: absolute;
+	left: 50%;
+	top: 90%;
+	transform: translate(-50%, 0%);
+}

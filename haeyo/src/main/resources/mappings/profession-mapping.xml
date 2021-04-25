@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="professionDAO">
+	<resultMap id="professionResult" type="profession">
+		<id property="pNo" column="p_no"/>
+		<result property="uNo" column="u_no"/>
+		<result property="pAddress" column="p_address"/>
+		<result property="pLocX" column="p_loc_x"/>
+		<result property="pLocY" column="p_loc_y"/>
+		<result property="certification" column="certification"/>
+		<result property="pPic" column="p_pic"/>
+		<result property="pAgreeCheck" column="p_agreecheck"/>
+		<result property="pIntroduce" column="p_introduce"/>
+		<result property="pCategory" column="p_category"/>
+		
+		<result property="pToilet" column="p_toilet" />
+		<result property="pRoom" column="p_room" />
+		<result property="pRefrigerator" column="p_refrigerator" />
+		<result property="pArrangement" column="p_arrangement" />
+		<result property="pHomein" column="p_homein" />
+		<result property="pTransportation" column="p_transportation"/>
+		<result property="pOneroom" column="p_oneroom"/>
+		<result property="pKeep" column="p_keep"/>
+		<result property="pWaterpipe" column="p_waterpipe"/>
+		<result property="pElectric" column="p_electric"/>
+		<result property="pDoor" column="p_door"/>
+		<result property="pLiving" column="p_living"/>
+		<result property="pTrash" column="p_trash"/>
+		<association property="professionBookmarksVO" resultMap="bookmark" />
+	</resultMap>
+	
+	<!-- bookmark -->
+	<resultMap id="bookmark" type="bookmarkVO">
+		<result property="pNo" column="p_no"/>
+		<result property="uNo" column="u_no"/>
+	</resultMap>
+	
+	<!-- review -->
+	<resultMap id="professionReview" type="review">
+		<id property="reviewNo" column="p_no"/>
+	</resultMap>
+	
+	<!-- 북마크 인서트 -->
+	<insert id="insertBook">
+		INSERT INTO professions_bookmarks VALUES (${pNo}, ${uNo});
+	</insert>
+	
+	<!-- 북마크 삭제 -->
+	<delete id="deleteBook">
+		DELETE FROM professions_bookmarks WHERE p_no = #{pNo} AND u_no = #{uNo};
+	</delete>
+	
+	<!-- 북마크 카운트 -->
+	<select id="selectBook" resultMap="bookmark">
+		SELECT p_no, u_no FROM professions_bookmarks where p_no = #{pNo} AND  u_no = #{uNo};
+	</select>
+	
+	<!-- 210407 장현아 전문가 회원가입 / 오류 : https://zereight.tistory.com/78 보기 -->
+	<insert id="insertPro" parameterType="profession">
+		INSERT INTO
+		professions(u_no, p_address, p_gender, p_loc_x, p_loc_y,
+		certification, p_pic, p_agreecheck, p_introduce, p_category)VALUES
+		((SELECT MAX(u_no) FROM
+		users),#{pAddress},#{pGender},#{pLocX},#{pLocY},#{certification},#{pPic},#{pAgreeCheck},#{pIntroduce},#{pCategory})
+	</insert>
+	
+	<!-- 210408 장현아 전문가 세부내용 저장  -->
+	<insert id="insertProCate01" parameterType="profession">
+		INSERT INTO
+		professions_cleaning(p_no, p_toilet, p_room, p_refrigerator, p_arrangement, p_homein)VALUES
+		((SELECT MAX(p_no) FROM professions),#{pRoom},#{pLiving},#{pRefrigerator},#{pArrangement},#{pHomein})
+	</insert>
+		<insert id="insertProCate02" parameterType="profession">
+		INSERT INTO
+		professions_moving(p_no, p_transportation, p_oneroom, p_keep)VALUES
+		((SELECT MAX(p_no) FROM professions),#{pTransportation},#{pOneroom},#{pKeep})
+	</insert>
+		<insert id="insertProCate03" parameterType="profession">
+		INSERT INTO
+		professions_repair(p_no, p_waterpipe, p_electric, p_door, p_living, p_trash)VALUES
+		((SELECT MAX(p_no) FROM professions),#{pWaterpipe},#{pElectric},#{pDoor},#{pLiving},#{pTrash})
+	</insert>
+</mapper>

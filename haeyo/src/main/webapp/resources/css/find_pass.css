@@ -1,0 +1,138 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;400;700;900&display=swap');
+@import 
+url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,th,td,form,fieldset,legend,input,label,textarea,select,button{margin:0; padding:0;}
+body,h1,h2,h3,h4,h5,h6 {font-size:12px; font-family: 'Noto Sans KR', sans-serif; color:#333;}
+a {text-decoration:none; color:#333;}
+img, fieldset {border:none; vertical-align: middle;}
+ul,ol,li {list-style: none;}
+strong,em,address {font-weight:normal; font-style:normal;}
+table {border-collapse:collapse;}
+
+.clearfix:after { /*날아갈경우 높이 지정*/
+    content:"";
+    display:block;
+    clear:both;
+}
+#find-body {
+	margin: 0 auto;
+}
+#find-title {
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+    margin-top:30px;
+    margin-bottom: 20px;
+}
+#find-title > h1 {
+    display: inline-block;
+    font-size: 2em;
+    margin-right: 10px;
+    font-weight: 600;
+}
+#signupform {
+    width: 400px;
+    height: auto;
+    font-size: 16px;
+    float: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 20px auto;
+}
+#join_pro-button .btn-secondary {
+    border-radius: 30px;
+    border: 1px solid #05C3A7;
+    background-color: #05C3A7;
+    color: #fff;
+    font-size: 16px;
+    width: 200px;
+    height: 40px;
+    cursor: pointer;
+    outline: 0;
+    margin-top: 50px;
+}
+#join_pro-button .btn-secondary:hover {
+    border: 1px solid #05C3A7;
+    background-color: #fff;
+    color: #05C3A7;
+}
+.pass-join {
+    height: 50px;
+    margin: 0 auto;
+    font-size: 12px;
+    font-weight: 100;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size:12px; 
+    font-family: 'Noto Sans KR', sans-serif; 
+    margin-bottom: 10px;
+}
+.pass-join a:hover {
+    color: #199683;
+}
+.sns-info > p {
+    font-size:11px; 
+    font-family: 'Noto Sans KR', sans-serif; 
+    color: rgb(105, 105, 105);
+}
+.form-group {
+    margin: 30px auto;
+    width: 400px;
+}
+.pass-join > ul {
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+}
+.pass-join > ul > li {
+    display: inline-block;
+    float: right;
+    margin: 20px 0 0 20px;  
+}
+.pass-join > ul > li a {
+    font-size: 1.3em;
+}
+.pass-join > ul > li:last-child {
+    margin-left:0;
+}
+.form-group .form-control{
+    padding: 15px;
+    width: 400px;
+    height: 45px;
+}
+.form-group > label{
+    margin-bottom: 9px;
+    font-weight: 400;
+}
+.box {
+    margin: 0 auto;
+    text-align: center;
+}
+.sns-button > a > img {
+    margin-top:20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 40px;
+}
+
+#btn-groupbtn-group-toggle{
+    font-size:14px; 
+    font-family: 'Noto Sans KR', sans-serif; 
+    /* margin: 7px 48px; */
+    width: 50px;
+    border-radius: 3px;
+    border: 1px solid #05C3A7;
+    background-color: #05C3A7;
+    color: #fff;
+    height: 30px;
+    /* cursor: pointer; */
+    /* outline: 0; */
+    float: left; 
+}
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}

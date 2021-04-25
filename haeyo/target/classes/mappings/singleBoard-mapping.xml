@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="singleBoardDAO">
+	
+	<!-- 혼자해요 sql문 -->
+	<insert id="insertSingleBoard">
+	
+	</insert>
+	
+	<update id="updateSingleBoard">
+	
+	</update>
+	
+	<delete id="deleteSingleBoard" >
+	
+	</delete>
+	
+	<select id="selectSingleBoard" >
+	
+	</select>
+	
+	<select id="selectSingleBoardList" >
+	
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserDAO">
+	<resultMap id="userResult" type="user">
+		<id property="uNo" column="u_no"/>		<!-- 회원번호 -->
+		<result property="uName" column="u_name"/>		<!-- 이름 -->
+		<result property="uEmail" column="u_email"/>		<!-- 이메일 -->
+		<result property="uPwd" column="u_pwd"/>		<!-- 비밀번호 -->
+		<result property="uPhone" column="u_phone"/>		<!-- 휴대전화 -->
+		<result property="uAddress" column="u_address"/>		<!-- 주소 -->
+		<result property="uLat" column="u_lat"/>		<!-- 위도 -->
+		<result property="uLon" column="u_lon"/>		<!-- 경도 -->
+		<result property="uAgreecheck" column="u_agreecheck"/>		<!-- 약관동의 -->
+		<result property="uPic" column="u_pic"/>		<!-- 사진 -->
+		<result property="uNick" column="u_nick"/>		<!-- 별명 -->
+	</resultMap>
+
+	<!-- Login Start -->
+	<select id="getUser" resultMap="userResult">
+		SELECT * FROM users WHERE u_email = #{uEmail} AND u_pwd = #{uPwd};
+	</select>
+	<!-- Login End -->
+
+	<!-- 아이디 중복 검사 Start -->
+	<select id="idChk" resultType="int">
+		SELECT COUNT(*) FROM users WHERE u_email = #{uEmail};
+	</select>
+	<!-- 아이디 중복 검사 End -->
+
+	<!-- INSERT Start-->
+	<insert id="insertUser">		
+		INSERT INTO users(u_name, u_email, u_pwd, u_phone, u_address, u_lat, u_lon, u_agreecheck, u_pic, u_nick)
+		VALUES (#{uName},#{uEmail},#{uPwd},#{uPhone},#{uAddress},#{uLat},#{uLon},#{uAgreecheck},#{uPic},#{uNick});
+	</insert>
+	<!-- INSERT End -->
+</mapper>

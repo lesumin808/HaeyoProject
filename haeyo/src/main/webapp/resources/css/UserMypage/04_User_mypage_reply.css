@@ -1,0 +1,400 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import 
+url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,th,td,form,fieldset,legend,input,label,textarea,select,button{margin:0; padding:0;}
+body,h1,h2,h3,h4,h5,h6 {font-size:12px; font-family: 'Noto Sans KR', sans-serif; color:#333;}
+a {text-decoration:none; color:#333;}
+img, fieldset {border:none; vertical-align:middle;}
+ul,ol,li {list-style: none;}
+strong,em,address {font-weight:normal; font-style:normal;}
+table {border-collapse:collapse;}
+
+
+#container{
+    width: 100%;
+    display: inline-flex;
+    /* background-color: teal; */
+}
+
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import 
+url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,th,td,form,fieldset,legend,input,label,textarea,select,button{margin:0; padding:0;}
+body,h1,h2,h3,h4,h5,h6 {font-size:12px; font-family: 'Noto Sans KR', sans-serif; color:#333;}
+a {text-decoration:none; color:#333;}
+img, fieldset {border:none; vertical-align: middle;}
+ul,ol,li {list-style: none;}
+strong,em,address {font-weight:normal; font-style:normal;}
+table {border-collapse:collapse;}
+
+.clearfix:after { /*날아갈경우 높이 지정*/
+    content:"";
+    display:block;
+    clear:both;
+}
+
+/*------header------*/
+#header {
+    height: 76px;
+    border-bottom: 1px solid #ebebeb;
+    box-shadow: 3px 2px 10px 3px #eeeeee;
+}
+#header #nav {
+    width: 1200px;
+    margin: 0 auto;
+    line-height: 76px;
+}
+#header #nav > ul {
+    float: right;
+}
+#header #nav > ul li {
+    float: left;
+    font-size: 1.4em;
+    margin-left: 3em;
+    color: #000;
+    font-weight: 600;
+}
+#header #nav > ul li a:hover{
+    color: #05c3a7;
+}
+
+/*------footert------*/
+#footer {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 40px;
+}
+#footer #bottom {
+    width: 1200px;
+    height: 150px;
+    margin: 0 auto;
+}
+#footer #bottom .phone {
+    float: left;
+}
+#footer #bottom .phone > p {
+    font-size: 1.2em;
+}
+#footer #bottom .phone > p > span{
+    color: #0db39b;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+#footer #bottom .phone .sns {
+    margin-top: 26px;
+}
+#footer #bottom .phone .sns li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 30px;
+    color: #454545;
+    background-color: fff;
+}
+#footer #bottom .service {
+    float: right;
+    margin-bottom: 30px;
+}
+#footer #bottom .service > ul {
+    float: left;
+    margin-left: 100px;
+}
+#footer #bottom .service > ul .sevName {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #000;
+}
+#footer #bottom .service > ul li {
+    font-size: 1.2em;
+    color: #969696;
+    margin-bottom: 10px;
+}
+#footer #bottomtxt {
+    margin: 0 auto;
+    width: 1200px;
+    border-top: 1px solid #eee;
+    color: #969696;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+#footer #bottomtxt .copy {
+    padding-top: 30px; 
+}
+
+
+
+/* ------ User_sidebar ------- */
+
+#user-side-nav {
+   width: 250px;
+   box-sizing: border-box;
+   font-size: 1.5rem;
+   font-weight: 400;
+   line-height: 2;
+}
+
+.user-mypage-list{
+    width: 250px;
+    height: 200px;
+    flex-wrap: coulumn;
+    padding-top : 30px;
+}
+
+.user-mypage-list > p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 20px 0 0 20px;
+}
+
+.nav-item{
+    padding-left:30px;
+}
+#user-info{
+    height: 300px;
+    /* background-color: rgb(18, 177, 153); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top:30px;
+    width:100%;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+}
+
+#user-img-box{
+    width: 150px;
+    height: 150px;
+/*     margin-top: 30px; */
+    /* border-radius: 50%; */
+    overflow: hidden;
+    margin-left: 50px;
+    padding : 100px 0 0 50px;
+     
+
+}
+
+#img-user-pic{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+/*     background-color: rgb(105, 18, 177); */
+    margin: -100px 0 0 -50px;
+    border:0px;
+    background-image: url("image/usrBasicSide.png")
+	border : 0;    
+
+}
+
+#user-email{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+#user-profile{
+    background-color: #EBEBEB;
+}
+
+#user-rsv{
+    background-color: #D0D0D0;
+}
+
+#user-content[
+      background-color: #EBEBEB;
+]
+
+#haeyo-info{  
+    background-color: #D0D0D0;
+}
+
+#main-header {
+    margin: 30px 0 15px 35px;
+
+}
+#main-header > h5 {
+    font-size: 25px;
+}
+#main-header > p {
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+
+
+.User_MyReply_main{
+    width: 1000px;
+    height: 750px;
+    display: block;
+    flex-direction: column;
+/*     justify-content: center;
+ */    align-items: center;
+/*   background-color: rgb(38, 177, 43); */  
+}
+
+.Reply_select{
+    margin: 6px;
+    padding:6px;
+    width: 930px;
+    height: 100px;
+    display: flex;
+    border-top: 2px solid #E2E2E2;
+
+/*     background-color: burlywood;
+ */    
+}
+
+.MyReply_check{
+    display: inline;
+}
+#select_deleteThing{
+    width: 20px;
+    height: 25px;
+    margin: 2px 6px 6px 6px;
+    display: inline-block;
+}
+#User_reply_content{
+    width: 100%;
+    height: 140px;
+/*     background: yellow; */
+    font-size: 13px;
+    margin: 35px;
+    border-top: 2px solid #c4c4c4;
+}
+
+
+#User_reply_content td{
+/*     background:#05c3a7; */
+}
+
+#User_reply_bottom{
+    margin: auto;
+  width: 50%;
+}
+.Reply_content{
+    display: inline-block;
+    width: 500px;
+    height: 400px;
+    font-size: 15px;
+}
+.MyReply_date{
+    display: inline;
+    margin-top: 10px;
+}
+.MyReply_content{
+    display: block;
+    margin-top: 10px;
+
+}
+.fal fa-minus{
+    display: ;
+    width: 10px;
+    height: 5px;
+    color: darkgreen;
+    display: inline-block;
+    font-size: 10px;
+
+}
+
+.pazing_under{
+/*     background-color: darkorchid;
+ */}
+
+/* ------User-mypage-profile------- */
+
+.heayo_btn {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    background-color: #C4C4C4;
+    color: #fff;
+    font-size: 14px;
+    width: 75px;
+    height: 30px;
+    margin-top: 4px;
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+    margin: 20px;
+}
+}
+.mypage_phone_btn {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    background-color: #C4C4C4;
+    color: #fff;
+    font-size: 14px;
+    width: 100px;/*버튼 가로*/
+    height: 35px;/*버튼 세로*/
+    margin-top: 10px;/*버튼 위 간격*/
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+    margin: 10px;
+}
+
+#btn-confirm{
+    text-align: right;
+
+}
+
+#btn-config{
+    text-align: right;
+}
+.btn_delete {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    background-color: #c4c4c4;
+    color: #fff;
+    font-size: 12px;
+    width: 91px;
+    height: 30px;
+    margin-top: 40px;
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s
+}
+.btn_delete_all{
+    border-radius: 30px;
+    border: 1px solid #fff;
+    background-color: #c4c4c4;
+    color: #fff;
+    font-size: 12px;
+    width: 91px;
+    height: 30px;
+    margin-top: 40px;
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+    margin-left: 800px;
+
+}
+
+.btn_delete:hover {
+    border: 1px solid #05C3A7;
+    background-color: #05C3A7;
+    color: #fff;
+    transition: 0.5s;
+    
+}
+.btn_delete_all:hover {
+    border: 1px solid #05C3A7;
+    background-color: #05C3A7;
+    color: #fff;
+    transition: 0.5s;
+    
+}
+.mypage-pwd-before ::placeholder {
+    color: red;
+  }
+  textarea ::placeholder {
+    color: blue;
+    font-weight: bold;
+  }

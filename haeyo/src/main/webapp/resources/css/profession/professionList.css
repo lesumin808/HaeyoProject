@@ -1,0 +1,254 @@
+
+#recommend {
+    width: 1200px;
+    margin: 80px auto;
+    position: relative;
+}
+#recommend > h1 {
+    font-size: 2.5em;
+    font-weight: 400;
+}
+
+.box {
+    width: 386px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 30px 10px 0 0;
+    border: solid 2px #05C3A7;
+    float: left;
+    position: relative;
+    transition: 0.7s;
+    padding: 10px;
+}
+.box:hover {
+    border: solid 2px #05C3A7;
+    transition: 0.7s;
+    text-decoration: none;
+}
+.box a:hover {
+    text-decoration: none;
+}
+#recommend > h3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+.box .profile_img {
+    position: absolute;
+    top:10px;
+    right: 10px;
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.box .profile_img > img {
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+}
+.box_image .pCate {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.2em;
+    width: 70px;
+    height: 28px;
+    line-height: 26px;
+    border-radius: 15px;
+    border: solid 1px #05C3A7;
+    color: #fff;
+    background-color: #05C3A7;
+    font-weight: 600;
+}
+.box_image > h1 {
+    font-size: 1.8em;
+    margin-top: 10px;
+}
+.box_image > h2 {
+    font-size: 1.4em;
+    color: #656565;
+    margin-top: 10px;
+}
+.box_imag .starWrap {
+    width: 130px;
+}
+.prostarWrap .prostar > li {
+    float: left;
+    margin-right: 3px;
+    margin-top: 17px;
+    font-size: 1.2em;
+    color: #ffe327;
+}
+.prostarWrap .proscore {
+    display: inline-block;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding-top: 17px;
+    margin-left: 10px;
+}
+.probox_imag .prostarWrap {
+    width: 130px;
+}
+.starWrap .star > li {
+    float: left;
+    margin-right: 3px;
+    margin-top: 17px;
+    font-size: 1.2em;
+    color: #ffe327;
+}
+.starWrap .score {
+    display: inline-block;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding-top: 17px;
+    margin-left: 10px;
+}
+.book {
+    display: inline-block;
+    font-size: 2.4em;
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    width: 18px;
+    height: 24px;
+    background: url(../../image/book.png) no-repeat;
+    cursor: pointer;
+    background-position-x: -18px;
+}
+.book:hover {
+    background-position-x: 0px;
+}
+.book.select{
+    background-position-x: 0px;
+}
+
+
+/*---------------professionList-------------------*/
+#listWrap {
+    margin-top: 130px;
+}
+#professionList {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#professionList > h1 {
+    font-size: 2.5em;
+    font-weight: 400;
+}
+#professionList > select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #111;
+}
+#proWrap {
+    margin: 40px 0 100px 0;
+}
+.pro {
+    width: 100%;
+    /* height: 100px; */
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    margin-top: 30px;
+    position: relative;
+}
+.proList_img {
+    float: left;
+    width: 130px;
+    height: 130px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.proList_img > img {
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+}
+.pro_txt {
+    float: left;
+    margin-left:30px;
+}
+.pro_txt > h2 {
+    font-size: 1.4em;
+    color: #656565;
+    margin-top: 10px;
+}
+.pro_txt > p {
+    width: 550px;
+    margin-top: 10px;
+    font-size: 1.2em;
+    overflow: hidden;
+}
+.proName_txt > h1 {
+    font-size: 1.8em;
+    margin-top: 10px;
+    float: left;
+}
+.proName_txt .pCate {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 1.2em;
+    color: #111;
+    background-color: #fff;
+    font-weight: 600;
+    float: left;
+    margin-left: 14px;
+}
+.pro_txt .starWrap {
+    width: 300px;
+}
+.pro_txt .star {
+    float: left;
+}
+.pro_txt .score {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-left: 10px;
+    float: left;
+}
+.rihgt_txt {
+    position:absolute;
+    top:0;
+    right: 0;
+}
+.book2 {
+    float:right;
+    margin-right: 30px;
+    display: block;
+    font-size: 2.4em;
+    width: 18px;
+    height: 24px;
+    background: url(../../image/book2.png) no-repeat;
+    cursor: pointer;
+    background-position-x: -18px;
+}
+.book2:hover {
+    background-position-x: 0px;
+}
+.book2.select{
+    background-position-x: 0px;
+}
+.rihgt_txt .proList_btn {
+    background-color: #fff;
+    color: #05C3A7;
+    font-size: 1.2em;
+    font-weight: 600;
+    width: 130px;
+    height: 40px;
+    margin-top: 64px;
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+    border: none;
+}

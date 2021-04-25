@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="professionMypageDAO">
+	<resultMap id="ProfileResult" type="profession">
+	 	<id property="pNo" column="p_no"/>
+	 	<result property="uNo" column="u_no"/>
+	 	<result property="pGender" column="p_gender"/>
+	 	<result property="pAddress" column="p_address"/>
+	 	<result property="pLocX" column="p_loc_x"/>
+	 	<result property="pLocY" column="p_loc_y"/>
+	 	<result property="certification" column="certification"/>
+		<result property="pPic" column="p_pic"/>
+		<result property="pAgreeCheck" column="p_agreecheck"/> 	
+		<result property="pIntroduce" column="p_introduce"/> 	
+		<result property="pCategory" column="p_category"/>
+		<association property="professionsCleaningVO" resultMap="cleaningCate"/>
+		<association property="professionsMovingVO" resultMap="movingCate" />
+		<association property="professionsRepairVO" resultMap="repairCate" />
+     </resultMap>
+      
+    <!-- 청소 -->
+	<resultMap id="cleaningCate" type="cleaning">
+		<result property="pToilet" column="p_toilet"/>
+		<result property="pRoom" column="p_room"/>
+		<result property="pRefrigerator" column="p_refrigerator"/>
+		<result property="pArrangement" column="p_arrangement"/>
+		<result property="pHomein" column="p_homein"/>
+	</resultMap>
+	<!-- 이사 -->
+	<resultMap id="movingCate" type="moving">
+		<result property="pTransportation" column="p_transportation"></result>
+		<result property="pOneroom" column="p_oneroom"></result>
+		<result property="pKeep" column="p_keep"></result>
+	</resultMap>
+	<!-- 수리 -->
+	<resultMap id="repairCate" type="repair">
+		<result property="pWaterpipe" column="p_waterpipe"></result>
+		<result property="pElectric" column="p_electric"></result>
+		<result property="pDoor" column="p_door"></result>
+		<result property="pLiving" column="p_living"></result>
+		<result property="pTrash" column="p_trash"></result>
+	</resultMap>
+	
+     
+     <update id="updateProfile">
+     	 UPDATE professions SET 
+     	 		p_address = #{pAddress},
+     	 		p_loc_x = #{pLocX},
+     	 		p_loc_y = #{pLocY},
+                p_pic = #{pPic},
+                certification = #{certification},
+     	 		p_introduce = #{pIntroduce},
+     	 		p_category = #{pCategory}
+     	 WHERE p_no= #{pNo}
+     </update>
+     
+     <delete id="deleteProfile">
+         DELETE FROM professions WHERE p_no= #{pNo}
+     </delete>
+     
+     <select id="getProfile" resultMap="ProfileResult">
+       SELECT p.p_no, u_no, p_gender, p_address, p_loc_x, p_loc_y, certification, p_pic, p_agreecheck, p_introduce, p_category,
+              p_toilet, p_room, p_refrigerator, p_arrangement, p_homein, 
+              m.*, 
+              r.*  
+       FROM professions p
+			  LEFT JOIN professions_cleaning c ON p.p_no = c.p_no
+			  LEFT JOIN professions_moving m ON p.p_no = m.p_no
+			  LEFT JOIN professions_repair r ON p.p_no = r.p_no
+       WHERE u_no= #{uNo}
+     </select>
+     
+     
+     <!-- 서브 카테고리 작업 -->
+     <delete id="deleteSubCate">
+      <choose>
+			<when test='pCategory.equals("청소")'>
+			  DELETE FROM professions_cleaning WHERE p_no= #{pNo}
+			</when>
+			<when test='pCategory.equals("이사")'>
+			  DELETE FROM professions_moving WHERE p_no= #{pNo}
+			</when>
+			<when test='pCategory.equals("수리")'>
+			  DELETE FROM professions_repair WHERE p_no= #{pNo}
+			</when>
+	  </choose>
+     </delete>
+     
+    
+     <insert id="insertCleaning"> 
+		 INSERT INTO professions_cleaning(p_no, p_toilet, p_room, p_refrigerator, p_arrangement, p_homein)
+		 VALUES(#{pNo}, #{pToilet}, #{pRoom}, #{pRefrigerator}, #{pArrangement}, #{pHomein})
+	 </insert>
+			
+	<insert id="insertMoving"> 	
+		  INSERT INTO professions_moving(p_no, p_transportation, p_oneroom, p_keep)
+		  VALUES(#{pNo}, #{pTransportation}, #{pOneroom}, #{pKeep})
+	 </insert>
+			
+	<insert id="insertRepair"> 	
+		  INSERT INTO professions_repair(p_no, p_waterpipe, p_electric, p_door, p_living, p_trash)
+		  VALUES(#{pNo}, #{pWaterpipe}, #{pElectric}, #{pDoor}, #{pLiving}, #{pTrash})
+	 </insert>
+	 
+	 
+	 
+	 <select id="selectCleaning"> 	
+		  SELECT p_no, p_toilet, p_room, p_refrigerator, p_arrangement, p_homein
+	      FROM professions_cleaning
+	      WHERE p_no = ${pNo}
+	 </select>
+	 
+	 <select id="selectMoving"> 
+		 SELECT p_no, p_transportation, p_oneroom, p_keep
+	     FROM  professions_moving
+	     WHERE p_no = ${pNo}
+	 </select>
+					
+	<select id="selectRepair"> 	
+		  SELECT p_no, p_waterpipe, p_electric, p_door, p_living, p_trash
+	      FROM professions_repair
+	      WHERE p_no = ${pNo}
+	 </select>
+
+     
+     
+      
+</mapper>

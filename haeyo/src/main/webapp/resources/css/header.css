@@ -1,0 +1,204 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import 
+url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,th,td,form,fieldset,legend,input,label,textarea,select,button{margin:0; padding:0;}
+body,h1,h2,h3,h4,h5,h6 {font-size:12px; font-family: 'Noto Sans KR', sans-serif; color:#333;}
+a {text-decoration:none; color:#333;}
+img, fieldset {border:none; vertical-align: middle;}
+ul,ol,li {list-style: none;}
+strong,em,address {font-weight:normal; font-style:normal;}
+table {border-collapse:collapse;}
+
+.clearfix:after { /*날아갈경우 높이 지정*/
+    content:"";
+    display:block;
+    clear:both;
+}
+
+/*------header------*/
+#header {
+    height: 76px;
+    /* border-bottom: 1px solid #ebebeb; */
+    box-shadow: 3px 2px 10px 3px #eeeeee;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+#header #nav {
+    width: 1200px;
+    margin: 0 auto;
+    line-height: 76px;
+}
+#header #nav > ul {
+    float: right;
+}
+#header #nav > ul li {
+    float: left;
+    font-size: 1.4em;
+    margin-left: 3em;
+    font-weight: 600;
+}
+#header #nav > ul li a {
+    color: #05C3A7;
+    font-style: none;
+    text-decoration: none;
+}
+#header #nav > ul li a:hover {
+    color: #04a38b;
+    font-style: none;
+}
+#header #nav > ul .btn-group .open {
+    cursor: pointer;
+    outline: 0;
+}
+
+/*------dropdown*/
+#nav {
+    position: relative;
+}
+#nav .btn-group .dropdown-menu {
+    position:absolute;
+    top:50px;
+}
+#nav .btn-group .dropdown-toggle{
+    cursor: pointer;
+    color: #05C3A7;
+}
+#nav .btn-group .dropdown-toggle:hover{
+    color: #04a38b;
+}
+#nav .btn-group .dropdown-toggle .fa-bell {
+    font-size: 1.3em;
+}
+#nav .btn-group .alarm1 {
+    width: 420px;
+    height: 460px;
+    border: 1px solid #05C3A7;
+    padding-left: 24px;
+    font-size: 1em;
+    font-weight: 400;
+}
+#nav .btn-group .alarm1 > span {
+    display:inline-block;
+    margin-top:20px;
+    font-size: 0.9em;
+    color: #999;
+}
+#nav .btn-group .alarm1 > p {
+    font-size: 1.4em;
+    font-weight: 400;
+}
+#nav .btn-group .alarm1 > p:after {
+    content: '';
+    display: flex;
+    width: 372px;
+    height: 1px;
+    background-color: #dddee2;
+}
+/* #alarmTxt {
+    height: 7px;
+} */
+.alarm1 #alarmTxt .msgtext {
+	line-height: 20px;
+}
+#alarmTxt > span {
+	height: 6px;
+	font-size: 1em;
+	color: #eee;
+}
+#profile {
+    width: 240px;
+    height: 230px;
+    border: 1px solid #dddee2;
+    font-size: 0.9em;
+    padding: 0 20px 20px 20px;
+    font-weight: 400;
+    margin: 0 auto;
+}
+#profile .profileMenu {
+    width: 200px;
+    font-size: 0.7em;
+    font-weight: 400;
+}
+#profile .profileMenu .menuico {
+    margin-right: 10px;
+}
+#profile .profileMenu > li {
+    height: 42px;
+    margin-left: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+#profiteTxt {
+    font-size: 1.1em;
+    height: 60px;
+    color: #303030;
+}
+/*------footert------*/
+#footer {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 40px;
+    background-color: #fff;
+}
+#footer #bottom {
+    width: 1200px;
+    height: 150px;
+    margin: 0 auto;
+}
+#footer #bottom .phone {
+    float: left;
+}
+#footer #bottom .phone > p {
+    font-size: 1.2em;
+}
+#footer #bottom .phone > p > span{
+    color: #05C3A7;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+#footer #bottom .phone .sns {
+    margin-top: 26px;
+}
+#footer #bottom .phone .sns li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 30px;
+    color: #454545;
+    background-color: fff;
+}
+#footer #bottom .service {
+    float: right;
+    margin-bottom: 30px;
+}
+#footer #bottom .service > ul {
+    float: left;
+    margin-left: 100px;
+}
+#footer #bottom .service > ul .sevName {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #000;
+}
+#footer #bottom .service > ul li {
+    font-size: 1.2em;
+    color: #969696;
+    margin-bottom: 10px;
+}
+#footer #bottomtxt {
+    margin: 0 auto;
+    width: 1200px;
+    border-top: 1px solid #eee;
+    color: #969696;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+#footer #bottomtxt .copy {
+    padding-top: 30px; 
+}

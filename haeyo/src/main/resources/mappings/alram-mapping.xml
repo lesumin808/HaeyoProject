@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alramResultDAO">
+	<resultMap id="alramResult" type="alramVO">
+		<id property="alNo" column="al_no"/>
+		<result property="pNo" column="p_no"></result>
+		<result property="uNo" column="u_no"></result>
+		<result property="uEmail" column="u_email"></result>
+		<result property="pName" column="p_name"></result>
+		<result property="pEmail" column="p_email"></result>
+		<result property="uNick" column="u_nick"></result>
+		<result property="alCredate" column="al_credate"></result>
+		<result property="msg" column="al_con"></result>
+	</resultMap>
+	
+	<!-- 결제 알림 insert -->
+	<insert id="insertAlram">
+		INSERT INTO alram(p_no, u_no, u_email, p_name, p_email, u_nick, al_con) VALUES (#{pNo},#{uNo},#{uEmail},#{pName},#{pEmail},#{uNick},#{msg});
+	</insert>
+		
+	<!-- 알림 셀렉트 -->
+	<select id="selectAlarm" resultMap="alramResult">
+		SELECT * FROM alram WHERE p_email = #{uEmail};
+	</select>
+	
+	<!-- 알림 삭제 -->
+	<delete id="deleteAlarm" parameterType="int">
+		DELETE FROM alram WHERE al_no = #{alNo};
+	</delete>
+	
+</mapper>

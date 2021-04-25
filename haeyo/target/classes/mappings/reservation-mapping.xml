@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReservationResultDAO">
+	<resultMap id="ReservationResult" type="reservationVO">
+		<id property="rsvNo" column="rsv_no"/>
+		<result property="uNo" column="u_no"></result>
+		<result property="uName" column="u_name"></result>
+		<result property="start" column="start"></result>
+		<result property="pNo" column="p_no"></result>
+		<result property="title" column="title"></result>
+		<result property="rsvDate" column="rsv_date"></result>
+		<result property="rsvPic" column="rsv_pic"></result>
+		<result property="rsvLoc" column="rsv_loc"></result>
+		<result property="rsvDetail" column="rsv_detail"></result>
+		<result property="rsvCategory" column="rsv_category"></result>
+		<result property="rsvCredate" column="rsv_credate"></result>
+		<result property="completeCheck" column="complete_check"></result>
+		
+		<association property="reservationCleaningVO" resultMap="ResCleaningResult"/>
+		<association property="reservationMovingVO" resultMap="ResMovingResult"/>
+		<association property="reservationRepairVO" resultMap="ResRepairResult"/>
+	</resultMap>
+	
+	<!-- 청소 -->
+	<resultMap  id="ResCleaningResult" type="resCleaningVO">
+		<result property="rsvToilet" column="rsv_toilet"></result>
+		<result property="rsvRoom" column="rsv_room"></result>
+		<result property="rsvRefrigerator" column="rsv_refrigerator"></result>
+		<result property="rsvArrangement" column="rsv_arrangement"></result>
+		<result property="rsvHomein" column="rsv_homein"></result>
+	</resultMap>
+	
+	<!-- 이사 -->
+	<resultMap  id="ResMovingResult" type="resMovingVO">
+		<result property="rsvTransportation" column="rsv_transportation"></result>
+		<result property="rsvOneroom" column="rsv_oneroom"></result>
+		<result property="rsvkeep" column="rsv_keep"></result>
+	</resultMap>
+	
+	<!-- 수리 -->
+	<resultMap  id="ResRepairResult" type="resRepairVO">
+		<result property="rsvWaterpipe" column="rsv_waterpipe"></result>
+		<result property="rsvElectric" column="rsv_electric"></result>
+		<result property="rsvDoor" column="rsv_door"></result>
+		<result property="rsvLiving" column="rsv_living"></result>
+		<result property="rsvTrash" column="rsv_trash"></result>
+	</resultMap>
+	
+	
+	<insert id="insertReservaiton">
+		INSERT INTO reservations(u_no ,p_no, rsv_date, rsv_loc, rsv_pic, rsv_detail, rsv_category, rsv_credate) VALUES
+		(#{uNo},#{pNo},#{rsvDate}, #{rsvLoc},#{rsvPic}, #{rsvDetail}, #{rsvCategory}, NOW());
+	</insert>
+	
+	<insert id="insertCleaning">
+		INSERT INTO reservations_cleaning VALUES ((SELECT MAX(rsv_no) FROM reservations),#{rsvToilet}, #{rsvRoom}, #{rsvRefrigerator} ,#{rsvArrangement} , #{rsvHomein});
+	</insert>
+	<insert id="insertMoving">
+		INSERT INTO reservations_moving VALUES ((SELECT MAX(rsv_no) FROM reservations), #{rsvTransportation}, #{rsvOneroom}, #{rsvkeep});
+	</insert>
+	<insert id="insertRepair">
+		INSERT INTO reservations_repair VALUES ((SELECT MAX(rsv_no) FROM reservations), #{rsvWaterpipe}, #{rsvElectric}, #{rsvDoor}, #{rsvLiving}, #{rsvTrash});
+	</insert>
+	
+	<!-- 전문가 예약 일정 -->
+	<select id="selectReservation" resultMap="ReservationResult">
+		SELECT res.rsv_no, res.rsv_date as start, u.u_name as title fROM professions pro LEFT JOIN reservations res ON res.p_no = pro.p_no LEFT JOIN users u ON pro.u_no = u.u_no WHERE res.p_no = #{pNo}; 
+	</select>
+	
+	<!-- 연정 -->
+	<select id="getUserReservation" resultMap="ReservationResult">
+		SELECT rsv_no,  
+	</select>
+	
+	<select id="getProComplete" resultMap="ReservationResult">
+		SELECT res.rsv_no, res.u_no, res.p_no, u.u_name, rsv_date, rsv_loc, rsv_pic, rsv_detail, rsv_category, rsv_credate, complete_check 
+		FROM reservations res 
+		     LEFT JOIN users u ON res.u_no = u.u_no
+		WHERE complete_check = 1
+		AND p_no = #{pNo}
+	    AND rsv_date between #{startDate} and #{endDate}
+	</select>
+	
+	<resultMap id="GraphComplete" type="CompleteCountVO">
+		<result property="jan" column="jan"></result>
+		<result property="feb" column="feb"></result>
+		<result property="mar" column="mar"></result>
+		<result property="apr" column="apr"></result>
+		<result property="may" column="may"></result>
+		<result property="jun" column="jun"></result>
+		<result property="jul" column="jul"></result>
+		<result property="aug" column="aug"></result>
+		<result property="sep" column="sep"></result>
+		<result property="oct" column="oct"></result>
+		<result property="nov" column="nov"></result>
+		<result property="dec" column="dec"></result>
+	</resultMap>
+	
+	<select id="getGraphComplete" resultMap="GraphComplete">
+	SELECT IFNULL(SUM(CASE mm WHEN '01' THEN cnt END), 0) as jan
+     , IFNULL(SUM(CASE mm WHEN '02' THEN cnt END), 0) as feb
+     , IFNULL(SUM(CASE mm WHEN '03' THEN cnt END), 0) as mar
+     , IFNULL(SUM(CASE mm WHEN '04' THEN cnt END), 0) as apr
+     , IFNULL(SUM(CASE mm WHEN '05' THEN cnt END), 0) as may
+     , IFNULL(SUM(CASE mm WHEN '06' THEN cnt END), 0) as jun
+     , IFNULL(SUM(CASE mm WHEN '07' THEN cnt END), 0) as jul
+     , IFNULL(SUM(CASE mm WHEN '08' THEN cnt END), 0) as aug
+     , IFNULL(SUM(CASE mm WHEN '09' THEN cnt END), 0) as sep
+     , IFNULL(SUM(CASE mm WHEN '10' THEN cnt END), 0) as oct
+     , IFNULL(SUM(CASE mm WHEN '11' THEN cnt END), 0) as nov
+     , IFNULL(SUM(CASE mm WHEN '12' THEN cnt END), 0) as "dec"
+  	FROM ( SELECT DATE_FORMAT(rsv_date, '%m') mm, COUNT(rsv_no) cnt
+         FROM reservations
+         WHERE p_no = #{pNo}
+         AND complete_check = 1
+         GROUP BY DATE_FORMAT(rsv_date, '%m')
+        )a 
+	</select>
+	
+</mapper>
+
+

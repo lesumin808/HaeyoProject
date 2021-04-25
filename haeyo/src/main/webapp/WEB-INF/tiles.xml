@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- 반환값.이면 tiles -->
+	<!-- index 메인 -->
+	<definition name="haeyo.index"
+		template="/WEB-INF/views/customer/inc/layout.jsp">
+		<put-attribute name="title" value="해요" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/mainHeader.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/inc/index.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+
+	<!-- togetherBoard 상우 -->
+
+
+	<!-- togetherBoard 상우 -->
+
+
+
+	<definition template="/WEB-INF/views/customer/inc/layout.jsp" name="board.*">
+<put-attribute name="title" value="함께해요"/>
+
+<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"/>
+
+<put-attribute name="body" value="/WEB-INF/views/customer/togetherBoard/{1}.jsp"/>
+
+<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"/>
+
+</definition>
+
+	<!-- profession 이수민 -->
+	<definition name="profession.*"
+		template="/WEB-INF/views/customer/inc/layout.jsp">
+		<put-attribute name="title" value="해요-전문가" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/profession/{1}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+
+	<!-- professionMypage 장연정 -->
+	<definition name="proMypage.*"
+		template="/WEB-INF/views/customer/inc/layout.jsp">
+		<put-attribute name="title" value="해요-전문가" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/professionMypage/{1}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+
+	<!-- professionReservationList 장연정 -->
+	<definition name="proRSV.*"
+		template="/WEB-INF/views/customer/inc/layout.jsp">
+		<put-attribute name="title" value="해요-전문가" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/professionMypage/{1}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+
+	<!-- Join&Login 장현아 -->
+	<definition name="user.*"
+		template="/WEB-INF/views/customer/inc/layout.jsp">
+		<put-attribute name="title" value="해요-유저" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/user/{1}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+
+
+	<!-- UserMypage 손예인 -->
+	<definition name="userMypage.*"
+		template="/WEB-INF/views/customer/inc/layout.jsp">
+		<put-attribute name="title" value="해요-유저" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/userMypage/{1}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+
+	<!-- aside example 
+	<definition name="proMypage.*"
+		template="/WEB-INF/views/customer/inc/asideLayout.jsp">
+		<put-attribute name="title" value="해요-전문가" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="aside"
+			value="/WEB-INF/views/inc/proaside.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/professionMypage/{1}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>-->
+
+
+</tiles-definitions>

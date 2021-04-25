@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProListResultDAO">
+	<sql id="category_sql">
+        WHERE pro.p_category = #{pCategory}
+        GROUP BY pro.p_no
+   </sql>
+	<resultMap id="proListResult" type="proList">
+		<id property="pNo" column="p_no"/>
+		<result property="uNo" column="u_no"/>
+		<result property="pAddress" column="p_address"/>
+		<result property="pLocX" column="p_loc_x"/>
+		<result property="pLocY" column="p_loc_y"/>
+		<result property="certification" column="certification"/>
+		<result property="pPic" column="p_pic"/>
+		<result property="pAgreeCheck" column="p_agreecheck"/>
+		<result property="pIntroduce" column="p_introduce"/>
+		<result property="pCategory" column="p_category"/>
+		
+		<result property="uName" column="u_name"/>
+		<result property="uEmail" column="u_email"/>
+		<result property="uNick" column="u_nick"/>
+		<result property="uPic" column="u_pic"/>
+		<result property="rsvDate" column="rsv_date"/>
+		<result property="reviewNo" column="review_no"/>
+		<result property="reviewDate" column="review_date"/>
+		<result property="reviewContent" column="review_content"/>
+		<result property="score" column="reav"/>
+		<result property="count" column="count"/>
+		<association property="professionsCleaningVO" resultMap="cleaningCate" />
+		<association property="professionsMovingVO" resultMap="movingCate" />
+		<association property="professionsRepairVO" resultMap="repairCate" />
+	</resultMap>
+	<!-- 청소 -->
+	<resultMap id="cleaningCate" type="cleaning">
+		<result property="pToilet" column="p_toilet"/>
+		<result property="pRoom" column="p_room"/>
+		<result property="pRefrigerator" column="p_refrigerator"/>
+		<result property="pArrangement" column="p_arrangement"/>
+		<result property="pHomein" column="p_homein"/>
+	</resultMap>
+	<!-- 이사 -->
+	<resultMap id="movingCate" type="moving">
+		<result property="pTransportation" column="p_transportaition"></result>
+		<result property="pOneroom" column="p_oneroom"></result>
+		<result property="pKeep" column="p_keep"></result>
+	</resultMap>
+	<!-- 수리 -->
+	<resultMap id="repairCate" type="repair">
+		<result property="pWaterpipe" column="p_waterpipe"></result>
+		<result property="pElectric" column="p_electric"></result>
+		<result property="pDoor" column="p_door"></result>
+		<result property="pLiving" column="p_living"></result>
+		<result property="pTrash" column="p_trash"></result>
+	</resultMap>
+	<!-- 리뷰 -->
+	<resultMap id="reviewResult" type="review">
+		<result property="reviewNo" column="review_no"></result>
+		<result property="rsvNo" column="rsv_no"></result>
+		<result property="reviewContent" column="review_content"></result>
+		<result property="score" column="score"></result>
+	</resultMap>
+	
+	<select id="getProList" resultMap="proListResult">
+      	SELECT distinct pro.p_no , u.u_name, pro.p_category ,pro.p_pic ,pro.p_address, re.score, ROUND(IFNULL(AVG((re.score)),0),1) reav
+     	FROM professions pro
+	    LEFT OUTER JOIN reservations rse ON pro.p_no = rse.p_no
+		LEFT JOIN users u ON pro.u_no = u.u_no
+	    LEFT OUTER JOIN reviews re ON pro.p_no = re.p_no
+	    WHERE rse.rsv_date NOT between #{startDate} AND #{endDate}
+	    AND pro.p_category = #{pCategory}
+	   <![CDATA[
+        AND ((6371*acos(cos(radians(#{pickLocX}))*cos(radians(pro.p_loc_x))*cos(radians(pro.p_loc_y)
+		-radians(#{pickLocY}))+sin(radians(#{pickLocX}))*sin(radians(pro.p_loc_x))))) <= 10
+		]]>
+		group by pro.p_no LIMIT 3;
+	</select>
+	
+	<select id="getAllList" resultMap="proListResult">
+		SELECT pro.p_no, u.u_name, pro.p_category, pro.p_introduce ,pro.p_address,pro.p_pic, pro.p_loc_x, pro.p_loc_y, re.score, ROUND(IFNULL(AVG((re.score)),0),1) reav,
+		COUNT(re.p_no) count,
+		((6371*acos(cos(radians(#{pickLocX}))*cos(radians(pro.p_loc_x))*cos(radians(pro.p_loc_y)-radians(#{pickLocY}))+sin(radians(#{pickLocX}))*sin(radians(pro.p_loc_x))))) distance
+        FROM professions pro
+        LEFT OUTER JOIN users u ON pro.u_no = u.u_no
+    	LEFT OUTER JOIN reviews re ON pro.p_no = re.p_no
+        <include refid="category_sql"/>
+        <if test = "order != null and order !=''" >
+			<choose><!-- if함수의 종류 중 하나 -->
+	        	<when test="order = 1">
+	                  ORDER BY reav DESC
+	            </when>
+	        	<when test="order = 2">
+	                  ORDER BY count DESC
+	            </when>
+	            <otherwise>
+	                  ORDER BY distance DESC
+	            </otherwise>
+	       </choose>
+        </if>
+	</select>
+	
+	<!-- 전문가 select 테스트 -->
+	<select id="getList" resultMap="proListResult">
+		SELECT pro.p_no, u.u_name, pro.p_category, pro.p_introduce ,pro.p_address,pro.p_pic, pro.p_loc_x, pro.p_loc_y, re.score, ROUND(IFNULL(AVG((re.score)),0),1) reav,
+		COUNT(re.p_no) count,
+		((6371*acos(cos(radians(#{pickLocX}))*cos(radians(pro.p_loc_x))*cos(radians(pro.p_loc_y)-radians(#{pickLocY}))+sin(radians(#{pickLocX}))*sin(radians(pro.p_loc_x))))) distance
+        FROM professions pro
+        LEFT OUTER JOIN users u ON pro.u_no = u.u_no
+    	LEFT OUTER JOIN reviews re ON pro.p_no = re.p_no
+        <include refid="category_sql"/>
+			<choose><!-- if함수의 종류 중 하나 -->
+	        	<when test="order == 1">
+	                  ORDER BY reav DESC
+	            </when>
+	        	<when test="order == 2">
+	                  ORDER BY count DESC
+	            </when>
+	        	<when test="order == 3">
+	                  ORDER BY distance
+	            </when>
+	            <otherwise>
+	                  ORDER BY p_no
+	            </otherwise>
+	       </choose>
+	</select>
+	
+		<!-- 전문가 select 테스트 -->
+	<select id="getListTest" resultMap="proListResult">
+		SELECT pro.p_no, pro.p_category, pro.p_introduce ,pro.p_address, pro.p_pic
+        FROM professions pro
+	</select>
+	
+	<!-- 디테일 상단 전문가 정보출력 -->
+	<select id="proDetail" resultMap="proListResult">
+	    SELECT pro.p_no, u.u_email, u.u_name, pro.p_pic, pro.p_category, pro.p_address, pro.p_introduce, pro.certification, COUNT(re.p_no) count, ROUND(IFNULL(AVG((re.score)),0),1) reav
+        FROM professions pro
+        LEFT JOIN users u ON pro.u_no = u.u_no
+        LEFT JOIN reviews re ON pro.p_no = re.p_no
+        WHERE pro.p_no = #{pNo}
+	</select>
+	
+	<select id="proReview" resultMap="proListResult">
+		SELECT r.review_no, u.u_nick, u.u_email, u.u_name, r.review_date, r.score as reav, r.review_content, u.u_pic
+		FROM reviews r
+		LEFT JOIN users u ON r.u_no = u.u_no
+		WHERE r.p_no = #{pNo}
+		ORDER BY r.review_no
+	</select>
+	
+	<!-- 전문가 리뷰 -->
+	<!-- 리뷰 보기 -->
+	<select id="getReview" resultMap="reviewResult">
+		SELECT * FROM reviews WHERE review_no = #{reviewNo};
+	</select>
+	
+	<!-- 리뷰 업데이트 -->
+	<update id="updateReview">
+		UPDATE reviews SET review_content = #{reviewContent} WHERE review_no = #{reviewNo}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview">
+		delete from reviews where review_no = #{reviewNo};
+	</delete>
+	
+</mapper>

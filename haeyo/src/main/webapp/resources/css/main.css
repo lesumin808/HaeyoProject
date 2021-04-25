@@ -1,0 +1,169 @@
+
+/*------mainStart------*/
+#main {
+    background-color: #05C3A7;
+}
+#main #visual {
+    width: 1200px;
+    padding-top: 100px;
+    height: 870px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    z-index: 1;
+}
+#main #visual > p {
+    font-size: 3.7em;
+    color: #fff;
+}
+#main #visual > p > span {
+    color: #fbf07d;
+}
+#main #visual .heayo_btn {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    background-color: #05C3A7;
+    color: #fff;
+    font-size: 16px;
+    width: 180px;
+    height: 50px;
+    margin-top: 40px;
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+}
+#main #visual .heayo_btn:hover {
+    border: 1px solid #05C3A7;
+    background-color: #eee;
+    color: #05C3A7;
+    transition: 0.5s;
+}
+#main #visual > span {
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+    animation-duration: 2s;
+    animation-direction :alternate;
+    animation-iteration-count: infinite;
+}
+#main #visual .vimg_01 {
+    left:110px;
+    animation-duration: 2.2s;
+    animation-name: slide01;
+}
+#main #visual .vimg_02 {
+    left:435px;
+    animation-name: slide02;
+}
+#main #visual .vimg_03 {
+    left:935px;
+    animation-duration: 1.6s;
+    animation-name: slide03;
+}
+@keyframes slide01 {
+    from {
+      bottom:-82px;
+    }
+    to {
+      bottom:40px;
+    }
+}
+@keyframes slide02 {
+    from {
+      bottom:-50px;
+    }
+    to {
+      bottom:20px;
+    }
+}
+@keyframes slide03 {
+    from {
+      bottom:-40px;
+    }
+    to {
+      bottom:30px;
+    }
+}
+/*------mainEnd------*/
+
+#main .conwidth {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+/*------con01Start------*/
+#main #con01 {
+    position: relative;
+    z-index: 2;
+    height: 500px;
+    background-color: #fff;
+    text-align: center;
+}
+#main #con01 .withDo > h3 {
+    font-weight: 400;
+    font-size: 3.2em;
+}
+#main #con01 .withDo > h3 > span {
+    color: #05C3A7;
+}
+/*------con01End------*/
+
+/*------con02Start------*/
+#main #con02 {
+    height: 500px;
+    background-color: #f4f5f7;
+    text-align: center;
+}
+#main #con02 .selfDo > h3 {
+    font-weight: 400;
+    font-size: 3.2em;
+}
+#main #con02 .selfDo > h3 > span {
+    color: #05C3A7;
+}
+/*------con02End------*/
+
+/*--modal--*/
+.modal-content .modal-header {
+    padding-top: 35px;
+}
+#exampleModalCenterTitle {
+    font-size: 2em;
+    text-align: center;
+}
+#modal-body {
+    padding: 50px;
+    text-align: center;
+}
+#modal-body .btn-secondary {
+    border-radius: 30px;
+    border: 1px solid #05C3A7;
+    background-color: #05C3A7;
+    color: #fff;
+    font-size: 16px;
+    width: 110px;
+    height: 40px;
+    cursor: pointer;
+    outline: 0;
+    margin-right: 10px;
+}
+#modal-body .btn-secondary:hover {
+    border: 1px solid #05C3A7;
+    background-color: #fff;
+    color: #05C3A7;
+}
+#modal-body .btn-primary {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    background-color: #05C3A7;
+    color: #fff;
+    font-size: 16px;
+    width: 110px;
+    height: 40px;
+    cursor: pointer;
+    outline: 0;
+}
+#modal-body .btn-primary:hover {
+    background-color: #05C3A7;
+}

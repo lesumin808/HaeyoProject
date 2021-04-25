@@ -1,0 +1,542 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import 
+url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,th,td,form,fieldset,legend,input,label,textarea,select,button{margin:0; padding:0;}
+body,h1,h2,h3,h4,h5,h6 {font-size:12px; font-family: 'Noto Sans KR', sans-serif; color:#333;}
+a {text-decoration:none; color:#333;}
+img, fieldset {border:none; vertical-align:middle;}
+ul,ol,li {list-style: none;}
+strong,em,address {font-weight:normal; font-style:normal;}
+table {border-collapse:collapse;}
+
+
+#container{
+    width: 100%;
+    display: inline-flex;
+    /* background-color: teal; */
+}
+
+
+/*------header------*/
+#header {
+    height: 76px;
+    border-bottom: 1px solid #ebebeb;
+    box-shadow: 3px 2px 10px 3px #eeeeee;
+}
+#header #nav {
+    width: 1200px;
+    margin: 0 auto;
+    line-height: 76px;
+}
+#header #nav > ul {
+    float: right;
+}
+#header #nav > ul li {
+    float: left;
+    font-size: 1.4em;
+    margin-left: 3em;
+    color: #000;
+    font-weight: 600;
+}
+#header #nav > ul li a:hover{
+    color: #05c3a7;
+}
+
+/*------footert------*/
+#footer {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 40px;
+}
+#footer #bottom {
+    width: 1200px;
+    height: 150px;
+    margin: 0 auto;
+}
+#footer #bottom .phone {
+    float: left;
+}
+#footer #bottom .phone > p {
+    font-size: 1.2em;
+}
+#footer #bottom .phone > p > span{
+    color: #0db39b;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+#footer #bottom .phone .sns {
+    margin-top: 26px;
+}
+#footer #bottom .phone .sns li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 30px;
+    color: #454545;
+    background-color: fff;
+}
+#footer #bottom .service {
+    float: right;
+    margin-bottom: 30px;
+}
+#footer #bottom .service > ul {
+    float: left;
+    margin-left: 100px;
+}
+#footer #bottom .service > ul .sevName {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #000;
+}
+#footer #bottom .service > ul li {
+    font-size: 1.2em;
+    color: #969696;
+    margin-bottom: 10px;
+}
+#footer #bottomtxt {
+    margin: 0 auto;
+    width: 1200px;
+    border-top: 1px solid #eee;
+    color: #969696;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+#footer #bottomtxt .copy {
+    padding-top: 30px; 
+}
+
+
+
+/* ------navigation------- */
+
+#user-side-nav {
+   width: 250px;
+   box-sizing: border-box;
+   font-size: 1.5rem;
+   font-weight: 400;
+   line-height: 2;
+}
+
+.user-mypage-list{
+    width: 250px;
+    height: 200px;
+    flex-wrap: coulumn;
+    padding-top : 30px;
+}
+
+.user-mypage-list > p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 20px 0 0 20px;
+}
+
+.nav-item{
+    padding-left:30px;
+}
+#user-info{
+    height: 300px;
+    /* background-color: rgb(18, 177, 153); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top:30px;
+    width:100%;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+}
+
+#user-img-box{
+    width: 150px;
+    height: 150px;
+/*     margin-top: 30px; */
+    /* border-radius: 50%; */
+    overflow: hidden;
+/*     background-color: rgb(177, 18, 92); */
+    margin-left: 50px;
+    padding : 100px 0 0 50px;
+     
+
+}
+
+#img-user-pic{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+/*     background-color: rgb(105, 18, 177); */
+    margin: -100px 0 0 -50px;
+    
+    
+
+}
+
+#user-email{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+#user-profile{
+    background-color: #EBEBEB;
+}
+
+#user-rsv{
+    background-color: #D0D0D0;
+}
+
+#user-content{
+      background-color: #EBEBEB;
+}
+
+#haeyo-info{  
+    background-color: #D0D0D0;
+}
+
+
+
+/* ------pro-mypage-profile------- */
+section{
+
+    width: 100%;
+/*     background-color: bisque;
+ */    
+}
+
+#main-header {
+    margin: 30px 0 15px 35px;
+
+}
+#main-header > h5 {
+    font-size: 25px;
+}
+#main-header > p {
+    margin-top: 30px;
+    font-size: 15px;
+}
+#user-mypage-content{
+    width: 1200px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: inherit;
+ /*    background-color: rgba(236, 178, 178, 0.829);  */
+}
+#user-mypage-content > h2 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+#user-mypage-profile{
+    width: 500px;
+    height: 800px; 
+    border-radius: 20px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+/*     background-color: tomato; */
+ 
+}
+
+#userpic-box{
+    width: 720px;
+    height: 210px;
+    /* margin-top: 30px; */
+    overflow:auto;
+    background-color: rgb(177, 18, 92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+    position: relative;
+
+}
+/* ---------썸네일 사진 영역 start----------*/
+
+
+
+#user-mypage-thumb{
+    position: relative;
+    margin: 60px auto 30px auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    /* background: linear-gradient(45deg, #05c3a73b, #05C3A7); */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    position: absolute;  
+    border:1px solid;
+}
+
+
+.click-icon{
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    
+    cursor: pointer;
+/*     background-color: rgb(243, 53, 53);
+ */
+}
+.fa-camera{
+    position: absolute;
+    font-size: 25px;
+/*     color: rgb(128, 0, 0); */
+}
+#user-thumb{
+    display: none;
+}
+#thumb-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 0px;
+}
+
+
+/* ---------썸네일 사진 영역 end----------*/
+
+
+#user-nickname{
+    align-items: center;
+    margin-top: 210px;
+    width: 165px;
+    height: 150x;
+    font-size : 20px;
+    outline: none;
+
+}
+#user-nickname-field{
+	outline:0;
+	outline-style: none;
+	width: 250px;
+    margin-top: 15px;
+    font-size: 13px;
+    /* background-color: #EDEDED; */
+        text-align: right;
+}
+
+.user-mypage-info{
+    margin-top : 60px;
+    left : 100px;
+    width: 370px;
+/*     background-color: orange; */
+    height: 350px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+#adjustBtn{
+    font-size: 20px;
+/*     background-color: #05c3a73b; */
+    width : 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.block{
+    width: 30px;
+    height: 30px;
+}
+.fas fa-angle-right{
+    position: absolute;
+    font-size: 25px;
+}
+click-icon{
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    
+    cursor: pointer;
+/*     background-color: rgb(243, 53, 53);
+ */
+}
+.fa-camera{
+    position: absolute;
+    font-size: 25px;
+/*     color: rgb(128, 0, 0); */
+}
+
+
+#openButton{
+    background-color: #EBEBEB;
+    color: #7E7E7E;
+    width: 75px;
+    height: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+    display: inline;
+}
+#openButton:hover {
+    border: 1px solid #05C3A7;
+    background-color: #eee;
+    color: #05C3A7;
+    transition: 0.5s;
+}
+.block2{
+    width: 200px;
+    height: 40px;
+    display: inline;
+}
+
+.info-content1{
+    display: flex;
+    /* flex-direction: column; */
+    flex-direction: row;
+    margin-bottom: 20px; 
+}
+
+.info-content2{
+    display: flex;
+    flex-direction: column;
+    /* flex-direction: row; */
+    margin-bottom: 20px;
+} 
+
+.content{
+    width: 170px;
+/*     background-color: plum;
+ */    padding: 5px;
+    border-bottom: 1px solid #e5e5e5;
+
+}
+
+.content-text{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+.btn-out{
+    all:unset ;
+    background-color: steelblue;
+    color:white;
+    padding: 5px 20;
+    border-radius: 5px ;
+    cursor: pointer;
+}
+.modal{
+/*     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */    
+/*         box-shadow: 0 10px 20px rgba(165, 40, 40, 0.19), 0 6px 6px rgba(0,0,0,0.23);
+ */        /* position: absolute; */
+        top : 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+}
+
+.hidden { 
+    display: none;
+}
+
+
+.out_modal_overlay{
+    background-color: #000;
+    width: 100%;
+    height:100%;
+    position:absolute;
+}
+.out-content{
+
+    background-color: #EDEDED;
+    padding:35px 25px;
+    text-align: center;
+    position: fixed;
+    top:0px;
+    border-radius: 20px;
+    width: 500px;
+    height: 300px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.out-content > h6 {
+    font-size: 30px;
+}
+.out-content > p {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.modal_btn{
+    border-radius: 30px;
+    border: 1px solid #7E7E7E;
+    background-color: #FFF;
+    color: #7E7E7E;
+    font-size: 14px;
+    width: 125px;
+    height: 35px;
+    margin-top: 0px;
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+    margin: 50px 20px 0 0;
+}
+
+.modal_btn:hover {
+    border: 1px solid #05C3A7;
+    background-color: #fff;
+    color: #05C3A7;
+    transition: 0.5s;
+}
+.heayo_btn {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    background-color: #05C3A7;
+    color: #fff;
+    font-size: 14px;
+    width: 100px;/*버튼 가로*/
+    height: 35px;/*버튼 세로*/
+    margin-top: 0px;/*버튼 위 간격*/
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+}
+.heayo_btn:hover {
+    border: 1px solid #05C3A7;
+    background-color: #eee;
+    color: #05C3A7;
+    transition: 0.5s;
+}
+.modify_button{
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid #05C3A7;
+    background-color: #fff;
+    color: #05C3A7;
+    font-size: 14px;
+    width: 100px;/*버튼 가로*/
+    height: 35px;/*버튼 세로*/
+    margin-top: 0px;/*버튼 위 간격*/
+    cursor: pointer;
+    outline: 0;
+    transition: 0.5s;
+}
+.modify_button:hover {
+    border: 1px solid #fff;
+    background-color: #05C3A7;
+    color: #fff;
+    transition: 0.5s;
+}

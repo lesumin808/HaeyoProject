@@ -1,0 +1,233 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import 
+url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,th,td,form,fieldset,legend,input,label,textarea,select,button{margin:0; padding:0;}
+body,h1,h2,h3,h4,h5,h6 {font-size:12px; font-family: 'Noto Sans KR', sans-serif; color:#333;}
+a {text-decoration:none; color:#333;}
+img, fieldset {border:none; vertical-align:middle;}
+ul,ol,li {list-style: none;}
+strong,em,address {font-weight:normal; font-style:normal;}
+table {border-collapse:collapse;}
+
+
+#container{
+    width: 1200px;
+    margin: 0 auto;
+    /* background-color: teal; */
+}
+
+#container_wrap{
+    width: 100%;
+    display: inline-flex;
+    /* flex-direction: row-reverse; */
+}
+
+
+/* ------nav:sidebar------ */
+#side-nav {
+   width: 250px;
+   box-sizing: border-box;
+   font-size: 1.5rem;
+   font-weight: 400;
+   line-height: 2;
+}
+
+.pro-mypage-list{
+    width: 250px;
+    height: 200px;
+    /* flex-wrap:coulumn; */
+}
+
+.pro-mypage-list > p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 25px 0 10px 20px;
+}
+
+.nav-item{
+    padding-left:30px;
+}
+#pro-info{
+    height: 260px;
+    /* background-color: rgb(18, 177, 153); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom:#dddee2 1px solid;
+}
+
+#img-box{
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+    /* border-radius: 50%; */
+    overflow: hidden;
+    /* background-color: rgb(177, 18, 92); */
+}
+
+#img-user-pic{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    /* background-color: rgb(105, 18, 177); */
+}
+
+#user-info{
+    width:100%;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+    margin-top: 15px;
+}
+#user-email{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+#pro-profile{
+    border-bottom:#dddee2 1px solid;
+}
+
+#pro-rsv{
+    border-bottom:#dddee2 1px solid;
+}
+
+#haeyo-info{
+    border-bottom:#dddee2 1px solid;
+}
+
+
+/* ------pro-mypage-complete ------- */
+section{
+    width: 950px; /*1200-250*/
+    /* background-color: lightgray;   */
+    /* position: relative;   */
+}
+#page-title{
+    margin-left: 30px;
+    margin-top: 100px;
+    /*background-color: lightgreen;*/
+}
+
+#page-title > h2 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+#pro_complete_page{
+    /* width: 800px;
+    height: 1000px;
+    margin: 80px 80px; */
+    /* height: 1300px; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    /* background-color:  palegoldenrod; */
+}
+#date_btn{
+	width:15px
+    height: 10px;
+}
+
+#com_page_content{
+    width: 100%;
+    /*height: 1150px;*/
+    /*background-color: plum;*/
+    box-sizing: border-box;
+    padding: 40px;
+    margin-top: 10px;
+    
+}
+
+.com_content_count{
+    width: 100%;
+    height: 100px;
+    /*background-color: rosybrown;*/
+    display:inline-flex;
+    margin-bottom: 30px;
+}
+
+#dateForm{
+    width:500px;
+}
+
+#total_com{
+    width: 200px;
+    height: 100px;
+    /* background-color: lightgray; */
+    margin-right: 30px;
+    font-size: 40px;
+    font-weight: 500;
+    text-align: center;
+    padding: 20px;
+    background-color: #eeeeee;
+}
+
+#total_com > span{
+    color: #05C3A7;
+    margin: 0;
+    padding: 0;
+    /* background-color: lightgray; */
+}
+
+#review{
+    width: 200px;
+    height: 100px;
+    position: relative;
+    background-color: #eeeeee;
+}
+
+/* 테이블 (리스트)*/
+#com_content_list{
+    margin-top: 30px;
+}
+
+#com_service_list{
+    display: block;
+    box-sizing: border-box;
+    /* width: ; */
+    margin-bottom: 20px;
+    /*background-color: lightgreen;*/
+}
+
+#com_service_list > p {
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.table thead{
+    font-size: 16px;
+    text-align: center;
+}
+
+.pagination{
+    text-align: center;
+}
+
+/* 그래프*/
+.com_content_month{
+    width: 100%;
+    height: 435px;
+    margin-top: 50px;
+    /*background-color: #eeeeee;*/
+
+}
+
+#monthchart{
+    width: 100%;
+    height: 435px;
+}
+
+
+
+
+
+
+
+
+

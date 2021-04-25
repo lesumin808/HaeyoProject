@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+북마크 클래스 {
+    background: url(../image/book.png) no-repeat;
+    cursor: pointer;
+    background-position-x: -18px;
+}
+북마크클래스:hover {
+    background-position-x: 0px;
+}
+북마크클래스.select {
+    background-position-x: 0px;
+}

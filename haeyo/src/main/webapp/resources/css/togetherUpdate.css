@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+#contents {
+	position: absolute;
+	width: 700px;
+	height: auto;
+	left: 50%;
+	top: 10%;
+	background: rgba(196, 196, 196, 0.1);
+	border-radius: 30px;
+	transform: translate(-50%, 10%);
+	font-size:15px;
+}
+#updateheader {
+	position: absolute;
+	top: -5%;
+	left: 3%;
+	font-size: 20px;
+	font-weight: bold;
+}
+#updateForm {
+	margin:50px;
+}
+#footer {
+	position: absolute;
+	bottom: -800px;
+}
+
+#image_preview{
+	position: relative;
+	transform:translate(-50%, 0%);
+	left:50%;
+	height:240px; 
+	width:350px;
+}
+
+#updatebutton {
+	position: relative;
+	left: 91%;
+	top: 90%;
+	transform: translate(-50%, 0%);
+	margin-top:25px;
+}
+#map {
+    width: 600px;
+    height: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: none;
+}
+#map2 {
+    width: 600px;
+    height: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: none;
+}

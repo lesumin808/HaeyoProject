@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+
+#recommend {
+    width: 1200px;
+    margin: 80px auto;
+}
+#recommend > h1 {
+    font-size: 2.4em;
+}
+
+.box {
+    width: 386px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 30px 10px 0 0;
+    border: solid 1px #eee;
+    float: left;
+    position: relative;
+    transition: 0.7s;
+}
+.box:hover {
+    border: solid 1px #05C3A7;
+    transition: 0.7s;
+    text-decoration: none;
+}
+.box a:hover {
+    text-decoration: none;
+}
+.r_con {
+    font-size: 2.4em;
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    width: 18px;
+    height: 24px;
+    background: url(../image/book.png) no-repeat;
+    background-position-x: -18px;
+    cursor: pointer;
+}
+.r_con:hover {
+    background-position-x: 0;
+}
+.r_con.select {
+    background-position-x: 0;
+}
+
+.starWrap {
+    width: 200px;
+    line-height: 30px;
+    vertical-align: middle;
+    padding:20px 0 0 10px;
+}
+.starWrap .star {
+    height: 10px;
+    width: 90px;
+    float: left;
+}
+.starWrap .star > li {
+    margin-right: 4px;
+    float: left;
+}
+.starWrap .star > li:last-child {
+    margin-right: 0;
+}
+.starWrap .star .fa-star {
+    font-size: 12px;
+    color: #ffe327;
+}
+.starWrap .star .fa-star-half-alt {
+    font-size: 12px;
+    color: #ffe327;
+}
+.box_image {
+    padding:10px;
+    height:200px;
+}
+.box_image .pCate {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.2em;
+    width: 70px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 15px;
+    border: solid 1px #05C3A7;
+    color: #05C3A7;
+    background-color: #fff;
+}
+
+.box .box_image .l_con {
+    font-size: 2.4em;
+    position: absolute;
+    top:14px;
+    left: 20px;
+}
+.box .profile_img {
+    position: absolute;
+    top:14px;
+    right: 14px;
+    display: inline-block;
+    width: 170px;
+    height: 170px;
+    border-radius: 5px;
+    background-color: #eee;
+    background-size:100% 100%;
+}
+
+.box_image > h2 {
+    font-size: 1.8em;
+    margin: 10px 0 10px 6px;
+}
+.starWrap > span {
+    font-size: 1.2em;
+    margin-left: 8px;
+}
+#basicWrap {
+	margin-bottom: 100px;
+}
+
+#basic {
+    width:  1200px;
+    margin: 0 auto;
+    position: relative;
+}
+#basic > h1 {
+    font-size: 2.4em;
+}
+
+#dropWrap {
+    position:absolute;
+    top:10px;
+    right: 20px;
+}
+.btn-primary {
+    width: 80px;
+}

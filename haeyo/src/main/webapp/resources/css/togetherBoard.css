@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+#t_upper_contents {
+	background-color: #05C3A7;
+	height:100px;
+	width: 100%;
+}
+
+#t_upper_content1 {
+	font-size: 25px;
+	color: white;
+	position: absolute;
+	margin: 30px;
+}
+
+#t_contents {
+	position:relative;
+	left:50%;
+	transform: translate(-50%,0%);
+	font-size: 16px;
+	margin-top: 70px;
+	margin-bottom: 70px;
+	width:800px;
+	height: auto;
+}
+
+#t_content > tbody > tr >  th {
+	width:100px;
+}
+
+#t_content{
+	margin-bottom:0px;
+}
+
+#t_title {
+	font-weight: bold;
+}
+
+#middlebuttons{
+	margin-top:10px;
+}
+
+.middlebutton	{
+	float:right;
+	margin-left:10px;
+}
+
+.tBookmark {
+    background: url(../image/book.png) no-repeat;
+    cursor: pointer;
+    background-position-x: -18px;
+    position: absolute;
+    right:0%;
+    padding:5px;
+    text-indent: -1000em;
+}
+.tBookmark:hover {
+    background-position-x: 0px;
+    text-indent: -1000em;
+}
+
+.tBookmark.select {
+    background-position-x: 0px;
+    text-indent: -1000em;
+}
+
+
+#t_reply{
+	margin-top:80px;
+	width:800px;
+}
+#footer0 {
+	position:absolute;
+	bottom: -150%;
+}
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProSubResultDAO">
+	<!-- 청소 -->
+	<resultMap id="ProSubResult" type="prosubCate">
+		<id property="pNo" column="p_no" />
+		<result property="pToilet" column="p_toilet" />
+		<result property="pLiving" column="p_living" />
+		<result property="pRefrigerator" column="p_refrigerator" />
+		<result property="pArrangement" column="p_arrangement" />
+		<result property="pHomein" column="p_homein" />
+		<result property="pTransportation" column="p_transportation"/>
+		<result property="pOneroom" column="p_oneroom"/>
+		<result property="pKeep" column="p_keep"/>
+		<result property="pWaterpipe" column="p_waterpipe"/>
+		<result property="pElectric" column="p_electric"/>
+		<result property="pDoor" column="p_door"/>
+		<result property="pLiving" column="p_living"/>
+		<result property="pTrash" column="p_trash"/>
+	</resultMap>
+	
+	<select id="CleaningCate" resultMap="ProSubResult">
+		SELECT p_no, p_toilet, p_room, p_refrigerator, p_arrangement, p_homein
+		FROM professions_cleaning
+		WHERE p_no = #{pNo}
+	</select>
+	
+	<select id="MovingCate" resultMap="ProSubResult">
+		SELECT p_no, p_transportation, p_oneroom, p_keep
+		FROM professions_moving
+		WHERE p_no = #{pNo}
+	</select>
+	
+	<select id="RepairCate" resultMap="ProSubResult">
+		SELECT p_no, p_waterpipe, p_electric, p_door, p_living, p_trash
+		FROM professions_repair
+		WHERE p_no = #{pNo}
+	</select>
+	
+	
+	<!-- json테스트용 파일-->
+	<select id="CleaningCateTest" resultMap="ProSubResult" parameterType="java.util.HashMap">
+		SELECT p_no, p_toilet, p_room, p_refrigerator, p_arrangement, p_homein
+		FROM professions_cleaning
+		WHERE p_no = #{pNo}
+	</select>
+	
+	<select id="MovingCateTest" resultMap="ProSubResult" parameterType="java.util.HashMap">
+		SELECT p_no, p_transportation, p_oneroom, p_keep
+		FROM professions_moving
+		WHERE p_no = #{pNo}
+	</select>
+	
+	<select id="RepairCateTest" resultMap="ProSubResult" parameterType="java.util.HashMap">
+		SELECT p_no, p_waterpipe, p_electric, p_door, p_living, p_trash
+		FROM professions_repair
+		WHERE p_no = #{pNo}
+	</select>
+</mapper>

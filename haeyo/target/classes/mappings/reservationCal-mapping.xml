@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReservationCalDAO">
+	<resultMap id="ReservationCalResult" type="reservationCalVO">
+		<id property="rsvNo" column="rsv_no"/>
+		<result property="uNo" column="u_no"></result>
+		<result property="pNo" column="p_no"></result>
+		<result property="start" column="start"></result>
+		<result property="rsvDate" column="rsv_date"></result>
+		<result property="title" column="title"></result>
+		<result property="uName" column="u_name"></result>
+	
+	</resultMap>
+		
+	<!-- 연정 -->
+	<!-- 전문가 일정 리스트 
+	<select id="getProRsvList">
+	   SELECT rsv_no, u_no, p_no, rsv_date, rsv_loc, rsv_pic, rsv_detail, rsv_category, rsv_credate, complete_check
+	   FROM  reservations
+	   WHERE p_no = #{pNo}
+	   AND rsv_date > now();
+	</select>-->
+	
+	<select id="getProRsvList" resultMap="ReservationCalResult">
+		SELECT res.rsv_no, res.u_no, res.p_no, res.rsv_date as start, u.u_name as title
+		fROM reservations res 
+		     LEFT JOIN users u ON res.u_no = u.u_no 
+		WHERE res.p_no = #{pNo}
+		AND res.rsv_date > now();
+	</select> 
+	
+</mapper>
+
+

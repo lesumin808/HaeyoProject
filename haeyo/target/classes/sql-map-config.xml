@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Alias 설정 -->
+	<typeAliases>
+		<typeAlias alias="user" type="com.haeyo.biz.user.UserVO"/>
+		<typeAlias alias="profession" type="com.haeyo.biz.profession.ProfessionVO"/>
+		<typeAlias alias="proList" type="com.haeyo.biz.profession.ProfessionListVO"/>
+		<typeAlias alias="review" type="com.haeyo.biz.profession.ReviewsVO"/>
+		<typeAlias alias="moving" type="com.haeyo.biz.profession.ProfessionsMovingVO"/>
+		<typeAlias alias="cleaning" type="com.haeyo.biz.profession.ProfessionsCleaningVO"/>
+		<typeAlias alias="repair" type="com.haeyo.biz.profession.ProfessionsRepairVO"/>
+		<typeAlias alias="review" type="com.haeyo.biz.profession.ReviewsVO"/>
+		<typeAlias alias="prosubCate" type="com.haeyo.biz.profession.ProfessionSubVO"/>
+		<!-- board -->
+		<typeAlias alias="togetherBoardVO" type="com.haeyo.biz.board.impl.TogetherBoardVO"/>
+		<typeAlias alias="singleBoardVO" type="com.haeyo.biz.board.impl.SingleBoardVO"/>
+		<typeAlias alias="boardVO" type="com.haeyo.biz.board.BoardVO"/>
+		<typeAlias alias="togetherBoardListVO" type="com.haeyo.biz.board.impl.TogetherBoardListVO"/>
+		<typeAlias alias="singleBoardListVO" type="com.haeyo.biz.board.impl.SingleBoardListVO"/>
+		<typeAlias alias="togetherReplyVO" type="com.haeyo.biz.board.impl.TogetherReplyVO"/>
+		<typeAlias alias="togetherBookmarkVO" type="com.haeyo.biz.board.impl.TogetherBookmarkVO"/>
+		<typeAlias alias="togetherMemberVO" type="com.haeyo.biz.board.impl.TogetherMemberVO" />
+		<typeAlias alias="togetherDestinationVO" type="com.haeyo.biz.board.impl.TogetherDestinationVO" />
+		<!-- reservation -->
+		<typeAlias alias="reservationVO" type="com.haeyo.biz.reservation.ReservationVO"/>
+		<typeAlias alias="resCleaningVO" type="com.haeyo.biz.reservation.ReservationCleaningVO"/>
+		<typeAlias alias="resMovingVO" type="com.haeyo.biz.reservation.ReservationMovingVO"/>
+		<typeAlias alias="resRepairVO" type="com.haeyo.biz.reservation.ReservationRepairVO"/>
+		<typeAlias alias="reservationCalVO" type="com.haeyo.biz.reservation.ReservationCalVO"/>
+		<typeAlias alias="CompleteCountVO" type="com.haeyo.biz.professionMypage.impl.CompleteCountVO"/>
+		<!-- bookmark -->
+		<typeAlias alias="bookmarkVO" type="com.haeyo.biz.profession.ProfessionBookmarksVO"/>
+		
+		<!-- alram -->
+		<typeAlias alias="alramVO" type="com.haeyo.biz.reservation.alramVO"/>
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mappings/user-mapping.xml"/>
+		<mapper resource="mappings/userMypage-mapping.xml"/> 
+		
+		<mapper resource="mappings/profession-mapping.xml"/>
+		<mapper resource="mappings/professionList-mapping.xml"/>
+		<mapper resource="mappings/professionMypage-mapping.xml"/>
+		
+		<mapper resource="mappings/singleBoard-mapping.xml"/>
+		<mapper resource="mappings/togetherBoard-mapping.xml"/>
+		<mapper resource="mappings/proSubcategory-mapping.xml"/>
+
+		<mapper resource="mappings/reservation-mapping.xml"/>
+		<mapper resource="mappings/reservationCal-mapping.xml"/>
+		<mapper resource="mappings/alram-mapping.xml"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="togetherBoardDAO">
+	<!-- 함께해요 sql문 -->
+	<resultMap id="togetherBoardResult" type="togetherBoardVO">
+		<result property="tNo" column="t_no"/>
+		<result property="hNo" column="h_no"/>
+		<result property="tHeader" column="t_header"/>
+		<result property="tTitle" column="t_title"/>
+		<result property="tContent" column="t_content"/>
+		<result property="tJoinDate" column="t_join_date"/>
+		<result property="tPic1" column="t_pic1"/>
+		<result property="tPic2" column="t_pic2"/>
+		<result property="tAddress" column="t_address"/>
+		<result property="tLocX" column="t_loc_x"/>
+		<result property="tLocY" column="t_loc_y"/>
+		<result property="dLocX" column="d_loc_x"/><!-- 조인해야함 -->
+		<result property="dLocY" column="d_loc_y"/>
+		<result property="tCredate" column="t_credate"/>
+		<result property="tJoinMax" column="t_join_max"/>
+		<result property="tJoinNow" column="t_join_now"/>
+		<result property="tHits" column="t_hits"/>
+		<association property="tBookmarkVO" resultMap="tBookmarkResult"/>
+		<association property="userVO" resultMap="tBoardUserResult"/>
+		<association property="tDestinationVO" resultMap="tBoardDestinationResult"/>
+		<!-- 
+			<collection property="tReplyList" column="t_no" resultMap="ReplyResult" javaType="java.util.ArrayList" ofType="togetherReplyVO" select="selectReply"/>
+		-->
+	</resultMap>
+	<resultMap id="tBoardUserResult" type="user">
+		<result property="uNick" column="u_nick"/>
+	</resultMap>
+	<resultMap id="tBookmarkResult" type="togetherBookmarkVO">
+		<result property="tNo" column="bookmark_t_no"/>
+	</resultMap>
+	<resultMap id="tBoardDestinationResult" type="togetherDestinationVO">
+		<result property="dAddress" column="d_address"/>
+		<result property="dLocX" column="d_loc_x"/>
+		<result property="dLocY" column="d_loc_y"/>
+	</resultMap>
+	<!-- 상세글보기 부분 -->
+	<select id="selectTogetherBoard" resultMap="togetherBoardResult">
+		<choose>
+			<when test="tHeader == '함께출퇴근해요'">
+				SELECT b.t_no, h_no, u_nick, t_header, t_title, t_content, 
+				t_join_date, t_pic1, t_pic2, substring_index(t_address, ' ', 2) as t_address, t_loc_x, t_loc_y, d_address,
+				d_loc_x, d_loc_y, t_credate, t_join_max, t_join_now, t_hits, m.t_no as bookmark_t_no
+				FROM users as u
+				JOIN together_board as b ON(h_no = u_no)
+				JOIN together_destination as d USING(t_no)
+				LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{uNo}) as m
+				USING(t_no)
+				WHERE t_no = #{tNo};
+			</when>
+			<otherwise>
+				SELECT b.t_no, h_no, u_nick, t_header, t_title, t_content, t_join_date, t_pic1, t_pic2, t_address, t_loc_x, t_loc_y, t_credate, t_join_max, t_join_now, t_hits, m.t_no as bookmark_t_no
+				FROM together_board as b
+				JOIN users as u ON(h_no = u_no)
+				LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{uNo}) as m
+				USING(t_no)
+				WHERE t_no = #{tNo}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<resultMap id="togetherBoardListResult" type="togetherBoardVO">
+		<result property="tNo" column="t_no"/>
+		<result property="tHeader" column="t_header"/>
+		<result property="tTitle" column="t_title"/>
+		<result property="tPic1" column="t_pic1"/>
+		<result property="tAddress" column="t_address"/>
+		<result property="tJoinNow" column="t_join_now"/>
+		<result property="tJoinMax" column="t_join_max"/>
+		<result property="tHits" column="t_hits"/>
+		<association property="tBookmarkVO" resultMap="tListBookmarkResult"/>
+		<association property="tDestinationVO" resultMap="tListDestinationResult"/>
+	</resultMap>
+	<resultMap id="tListBookmarkResult" type="togetherBookmarkVO">
+		<result property="tNo" column="bookmark_t_no"/>
+	</resultMap>
+	<resultMap id="tListDestinationResult" type="togetherDestinationVO">
+		<result property="dAddress" column="d_address"/>
+	</resultMap>
+	<!-- 글 목록 부분 -->
+	<select id="selectTogetherBoardMain" resultMap="togetherBoardListResult">
+		SELECT b.t_no, t_header, t_title, t_pic1, t_address, t_join_now, t_join_max, t_hits, m.t_no as bookmark_t_no
+		FROM together_board as b
+		LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{uNo}) as m
+		USING(t_no)
+		ORDER BY RAND() limit 0,4
+	</select>
+	
+	<select id="selectTogetherBoardList" parameterType="map" resultMap="togetherBoardListResult">
+		<choose>
+			<when test="tHeader.equals('함께출퇴근해요')">
+				SELECT b.t_no, t_header, t_title, t_pic1, t_address, d_address, t_join_now, t_join_max, t_hits, m.t_no as bookmark_t_no,
+					(6371*acos(cos(radians(#{userVO.uLat}))*cos(radians(t_loc_x))*cos(radians(t_loc_Y)
+				 	-radians(#{userVO.uLon}))+sin(radians(#{userVO.uLat}))*sin(radians(t_loc_x)))) AS distance
+				FROM together_board as b
+				JOIN together_destination as d USING(t_no)
+				LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{userVO.uNo}) as m
+				USING(t_no)
+				WHERE t_header = #{tHeader} 
+				HAVING distance ORDER BY distance limit #{pagingVO.startNo},6
+			</when>
+			<otherwise>
+				SELECT b.t_no, t_header, t_title, t_pic1, t_address, t_join_now, t_join_max, t_hits, m.t_no as bookmark_t_no,
+					(6371*acos(cos(radians(#{userVO.uLat}))*cos(radians(t_loc_x))*cos(radians(t_loc_Y)
+				 	-radians(#{userVO.uLon}))+sin(radians(#{userVO.uLat}))*sin(radians(t_loc_x)))) AS distance
+				FROM together_board as b
+				LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{userVO.uNo}) as m
+				USING(t_no)
+				WHERE t_header = #{tHeader} 
+				HAVING distance ORDER BY distance limit #{pagingVO.startNo},6
+			</otherwise>
+		</choose>
+		
+	</select>
+	
+	<select id="countTotalBoard" resultType="int">
+		SELECT COUNT(t_no) 
+		FROM together_board 
+		WHERE t_header = #{tHeader}
+	</select>
+	
+	<select id="countTotalSearch" resultType="int">
+		SELECT COUNT(t_no) 
+		FROM together_board 
+		WHERE t_title LIKE CONCAT('%',#{searchInput},'%')
+		OR t_content LIKE CONCAT('%',#{searchInput},'%')
+	</select>
+
+	<insert id="insertTogetherBoard" parameterType="togetherBoardVO">
+		INSERT INTO together_board(h_no,t_header,t_title,t_address,t_join_date,
+			t_join_max,t_content, t_pic1, t_pic2, t_loc_x, t_loc_y,t_credate)
+		VALUES(#{hNo},#{tHeader},#{tTitle},#{tAddress},#{tJoinDate},
+			#{tJoinMax},#{tContent},#{tPic1},#{tPic2},#{tLocX},#{tLocY},now())
+		<selectKey keyProperty="tNo" resultType="int" order="AFTER">
+       		 SELECT LAST_INSERT_ID()
+    	</selectKey>
+	</insert>
+	
+	<insert id="insertTogetherDestination">
+		INSERT INTO together_destination(t_no, d_address, d_loc_x,d_loc_y)
+		VALUES(#{tBoardVO.tNo},#{tDestinationVO.dAddress},#{tDestinationVO.dLocX},#{tDestinationVO.dLocY})
+	</insert>
+	
+	<resultMap id="selectUpdateBoardResult" type="togetherBoardVO">
+		<result property="tNo" column="t_no"/>
+		<result property="tHeader" column="t_header"/>
+		<result property="tTitle" column="t_title"/>
+		<result property="tContent" column="t_content"/>
+		<result property="tJoinDate" column="t_join_date"/>
+		<result property="tPic1" column="t_pic1"/>
+		<result property="tPic2" column="t_pic2"/>
+		<result property="tAddress" column="t_address"/>
+		<result property="tLocX" column="t_loc_x"/>
+		<result property="tLocY" column="t_loc_y"/>
+		<result property="dLocX" column="d_loc_x"/>
+		<result property="dLocY" column="d_loc_y"/>
+		<result property="tJoinMax" column="t_join_max"/>
+		<association property="userVO" resultMap="selectUpdateBoardUserResult"/>
+		<association property="tDestinationVO" resultMap="selectUpdateBoardDestinationResult"/>
+	</resultMap>
+	<resultMap id="selectUpdateBoardUserResult" type="user">
+		<result property="uNo" column="u_no"/>
+	</resultMap>
+	<resultMap id="selectUpdateBoardDestinationResult" type="togetherDestinationVO">
+		<result property="dAddress" column="d_address"/>
+		<result property="dLocX" column="d_loc_x"/>
+		<result property="dLocY" column="d_loc_y"/>
+	</resultMap>
+	
+	<select id="selectUpdateBoard" resultMap="selectUpdateBoardResult">
+			SELECT b.t_no, u.u_no, t_header, t_title, t_content,
+			replace(t_join_date, ' ','T') as t_join_date, t_pic1, t_pic2, t_address, t_loc_x, t_loc_y, d_address, d_loc_x, d_loc_y, t_join_max
+			FROM together_board as b
+			JOIN together_destination as d USING(t_no)
+			JOIN users as u ON(h_no = u_no)
+			WHERE t_no = #{tNo}
+	</select>
+	
+	<update id="updateTogetherBoard" parameterType="togetherBoardVO">
+		UPDATE together_board SET 
+			t_header = #{tHeader},
+			t_title = #{tTitle},
+			t_address = #{tAddress},
+			t_content = #{tContent},
+			t_pic1 = #{tPic1},
+			t_pic2 = #{tPic2},
+			t_loc_x = #{tLocX},
+			t_loc_y = #{tLocY},
+			t_join_date = #{tJoinDate},
+			t_join_max = #{tJoinMax},
+			t_credate = now()
+		WHERE t_no = #{tNo}
+		<selectKey keyProperty="tNo" resultType="int" order="AFTER">
+       		 SELECT LAST_INSERT_ID()
+    	</selectKey>
+	</update>
+	
+	<update id="updateTogetherDestination">
+		UPDATE together_destination SET
+			d_address = #{tDestinationVO.dAddress},
+			d_loc_x = #{tDestinationVO.dLocX},
+			d_loc_y = #{tDestinationVO.dLocY}
+		WHERE t_no = #{tBoardVO.tNo}
+	</update>
+	
+	<delete id="deleteTogetherBoard" >
+		DELETE FROM together_board WHERE t_no = #{tNo}
+	</delete>
+	
+	<!-- 댓글전체 가져오기 -->
+	<resultMap id="ReplyResult" type="togetherReplyVO">
+		<result property="trNo" column="tr_no"/>
+		<result property="uNo" column="u_no"/>
+		<result property="tNo" column="t_no"/>
+		<result property="trContent" column="tr_content"/>
+		<result property="trCredate" column="tr_credate"/>
+		<association property="userVO" resultMap="ReplyUserResult"/>
+	</resultMap>
+	<resultMap id="ReplyUserResult" type="user">
+		<result property="uPic" column="u_pic"/>
+		<result property="uNick" column="u_nick"/>
+	</resultMap>
+	
+	<select id="selectReply" resultMap="ReplyResult">
+		SELECT u_pic, u_nick, tr_no, u_no, t_no, tr_content, tr_credate
+		FROM together_reply JOIN users USING(u_no)
+		WHERE t_no = #{tNo}
+	</select>
+	
+	<!-- 추가된 댓글만 가져오기  -->
+	<resultMap id="ReplyOneResult" type="togetherReplyVO">
+		<result property="trNo" column="tr_no"/>
+		<result property="uNo" column="u_no"/>
+		<result property="tNo" column="t_no"/>
+		<result property="trContent" column="tr_content"/>
+		<result property="trCredate" column="tr_credate"/>
+		<association property="userVO" resultMap="ReplyUserOneResult"/>
+	</resultMap>
+	<resultMap id="ReplyUserOneResult" type="user">
+		<result property="uPic" column="u_pic"/>
+		<result property="uNick" column="u_nick"/>
+	</resultMap>
+	
+	<select id="selectReplyOne" resultMap="ReplyOneResult">
+		SELECT u_pic, u_nick, tr_no, u_no, t_no, tr_content, tr_credate
+		FROM together_reply JOIN users USING(u_no)
+		WHERE tr_no = #{trNo}
+	</select>
+
+	<insert id="insertReply" parameterType="togetherReplyVO">
+		INSERT INTO together_reply(u_no, t_no, tr_content, tr_credate) 
+		VALUES(#{uNo},#{tNo},#{trContent},NOW())
+		<selectKey keyProperty="trNo" resultType="int" order="AFTER">
+       		 SELECT LAST_INSERT_ID()
+    	</selectKey>
+	</insert>
+	
+	<update id="updateReply">
+		UPDATE together_reply SET tr_content = #{trContent}, tr_credate = NOW()
+		WHERE tr_no = #{trNo}
+	</update>
+	
+	<delete id="deleteReply">
+		DELETE FROM together_reply WHERE tr_no = #{trNo}
+	</delete>
+	
+	<!-- 모임참여 부분-->
+	<resultMap id="selectJoinResult" type="togetherBoardVO">
+		<result property="tJoinNow" column="t_join_now"/>
+	</resultMap>
+
+	<select id="selectJoin" resultMap="selectJoinResult">
+		SELECT t_join_now
+		FROM together_board
+		WHERE t_no = #{tNo};
+	</select>
+	
+	<update id="updateJoin">
+		UPDATE together_board 
+		<choose>
+			<when test="joinOrCancle.equals('참여하기')">
+				SET t_join_now = t_join_now+1 
+			</when>
+			<when test="joinOrCancle.equals('참여취소')">
+				SET t_join_now = t_join_now-1 
+			</when>
+		</choose>
+		WHERE t_no = #{togetherMemberVO.tNo}
+	</update>
+	
+	<insert id="insertJoin">
+		INSERT INTO together_members VALUES(#{tNo},#{gNo})
+	</insert>
+	
+	<delete id="cancleJoin">
+		DELETE FROM together_members WHERE t_no = #{tNo} AND g_no = #{gNo}
+	</delete>
+	
+	<!-- 북마크 부분 -->
+	<insert id="insertBookmark" parameterType="map">
+		INSERT INTO together_bookmarks VALUES(#{uNo},#{tNo})
+	</insert>
+	
+	<delete id="deleteBookmark">
+		DELETE FROM together_bookmarks WHERE u_no= #{uNo} AND t_no = #{tNo}
+	</delete>
+	
+	<!-- 검색창 부분 -->
+	<resultMap id="searchResult" type="togetherBoardVO">
+		<result property="tNo" column="t_no"/>
+		<result property="tHeader" column="t_header"/>
+		<result property="tTitle" column="t_title"/>
+		<result property="tPic1" column="t_pic1"/>
+		<result property="tPic2" column="t_pic2"/>
+		<result property="tAddress" column="t_address"/>
+		<result property="tJoinNow" column="t_join_now"/>
+		<result property="tJoinMax" column="t_join_max"/>
+		<result property="tHits" column="t_hits"/>
+	</resultMap>
+	
+	<select id="searchBoardList" resultMap="searchResult">
+		SELECT t_no, t_header, t_title, t_pic1, t_pic2, t_join_now, t_join_max, t_address, t_hits
+		FROM together_board 
+		WHERE t_title LIKE CONCAT('%',#{searchInput},'%')
+		OR t_content LIKE CONCAT('%',#{searchInput},'%') limit #{startNo}, 6 
+	</select>
+	
+	<resultMap id="previewResult" type="togetherBoardVO">
+		<result property="tNo" column="t_no"/>
+		<result property="tTitle" column="t_title"/>
+	</resultMap>
+	
+	<select id="previewBoardList" resultMap="previewResult">
+		SELECT t_no, t_title
+		FROM together_board 
+		WHERE t_title LIKE CONCAT('%',#{searchInput},'%')
+	</select>
+	
+	<!-- 조건별 정렬 부분(조회수순, 참여가능인원 많은순, 최대참여인원순, 북마크인기순, 거리순)  -->
+	<resultMap id="sortResult" type="togetherBoardVO">
+		<result property="tNo" column="t_no"/>
+		<result property="tHeader" column="t_header"/>
+		<result property="tTitle" column="t_title"/>
+		<result property="tPic1" column="t_pic1"/>
+		<result property="tPic2" column="t_pic2"/>
+		<result property="tAddress" column="t_address"/>
+		<result property="tJoinNow" column="t_join_now"/>
+		<result property="tJoinMax" column="t_join_max"/>
+		<result property="tHits" column="t_hits"/>
+		<association property="tBookmarkVO" resultMap="sortBookmarkResult"/>
+	</resultMap>
+	<resultMap id="sortBookmarkResult" type="togetherBookmarkVO">
+		<result property="tNo" column="bookmark_t_no"/>
+	</resultMap>
+	
+	<select id="sortBoardList" resultMap="sortResult">
+		<choose>
+			<when test='sortInput.equals("북마크 인기순")'>
+				<!--확인용 SELECT b.t_no, t_header, t_title, t_pic1, t_address,
+					 t_hits, m.t_no, t_bookmark_sum -->
+				SELECT b.t_no, t_header, t_title, t_pic1, t_pic2, t_address, t_join_now, t_join_max, t_hits, m.t_no as bookmark_t_no
+				FROM together_board AS b 
+				LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{uNo}) as m
+				USING(t_no)
+				LEFT JOIN (SELECT t_no, COUNT(t_no) as t_bookmark_sum
+						FROM together_bookmarks 
+						GROUP BY t_no
+						ORDER BY COUNT(t_no) DESC) AS ms
+				USING(t_no)
+				WHERE t_header = #{tHeader}
+				ORDER BY t_bookmark_sum DESC limit #{startNo},6;
+			</when>
+			<when test="sortInput.equals('목적지가까운순')"> <!-- 목적지 정보를 받아서 넣어야한다 -->
+				SELECT b.t_no, t_header, t_title, t_pic1, t_address, t_join_now, t_join_max, t_hits, m.t_no as bookmark_t_no,
+				(6371*acos(cos(radians(#{userVO.uLat}))*cos(radians(t_loc_x))*cos(radians(t_loc_Y)
+				-radians(#{userVO.uLon}))+sin(radians(#{userVO.uLat}))*sin(radians(t_loc_x)))) AS distance1,
+				(6371*acos(cos(radians(37.5643))*cos(radians(d_loc_x))*cos(radians(d_loc_Y)
+				-radians(126.908))+sin(radians(37.5643))*sin(radians(d_loc_x)))) AS distance2
+				FROM together_board as b
+				JOIN together_destination USING(t_no)
+				LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{uNo}) as m
+				USING(t_no)
+				WHERE t_header = #{tHeader} 
+				ORDER BY distance1,distance2 limit #{startNo},6
+			</when>
+			<otherwise>
+				SELECT t_no, t_header, t_title, t_pic1, t_pic2, t_address, t_join_now, t_join_max, t_hits, m.t_no as bookmark_t_no
+				FROM together_board as b
+				LEFT JOIN (SELECT u_no, t_no FROM together_bookmarks WHERE u_no = #{uNo}) as m
+				USING(t_no)
+				WHERE t_header = #{tHeader}
+				<choose>
+					<when test='sortInput.equals("조회수순")'>
+						ORDER BY t_hits DESC limit #{startNo},6
+					</when>
+					<when test="sortInput.equals('남은인원 많은순')">
+						<!-- 확인용 SELECT t_no, t_header, t_title, t_pic, t_address, t_bookmark,
+							 t_hits,t_join_max,t_join_now, (t_join_max - t_join_now) FROM together_board -->
+						ORDER BY (t_join_max - t_join_now) DESC limit #{startNo},6
+					</when>
+					<when test="sortInput.equals('최대인원 많은순')">
+						ORDER BY t_join_max DESC limit #{startNo},6
+					</when>
+				</choose>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<resultMap id="UserLocationResult" type="user">
+		<result property="uNo" column="u_no"/>
+		<result property="uLat" column="u_lat"/>
+		<result property="uLon" column="u_lon"/>
+	</resultMap>
+	<select id="selectUserLocation" resultMap="UserLocationResult">
+		SELECT u_no, u_lat, u_lon FROM users WHERE u_no = #{uNo}
+	</select>
+	
+	<resultMap id="UserInfoResult" type="user">
+		<result property="uNo" column="u_no"/>
+		<result property="uNick" column="u_nick"/>
+		<result property="uPic" column="u_pic"/>
+		<result property="uAddress" column="u_address"/>
+	</resultMap>
+	<select id="selectUserInfo" resultMap="UserInfoResult">
+		SELECT u_no, u_nick, u_pic, u_address FROM users WHERE u_no = #{uNo}
+	</select>
+</mapper>

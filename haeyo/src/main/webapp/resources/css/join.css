@@ -1,0 +1,391 @@
+@import
+   url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap')
+   ;
+
+@import
+   url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap')
+   ;
+
+body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, table, tr,
+   th, td, form, fieldset, legend, input, label, textarea, select, button
+   {
+   margin: 0;
+   padding: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+   font-size: 12px;
+   font-family: 'Noto Sans KR', sans-serif;
+   color: #333;
+}
+
+a {
+   text-decoration: none;
+   color: #333;
+}
+
+img, fieldset {
+   border: none;
+   vertical-align: middle;
+}
+
+ul, ol, li {
+   list-style: none;
+}
+
+strong, em, address {
+   font-weight: normal;
+   font-style: normal;
+}
+
+table {
+   border-collapse: collapse;
+}
+
+.clearfix:after { /*   ư              */
+   content: "";
+   display: block;
+   clear: both;
+}
+
+#join_title {
+   text-align: center;
+   height: 70px;
+   line-height: 70px;
+   margin-top: 30px;
+   margin-bottom: 20px;
+}
+
+#join_title>h1 {
+   display: inline-block;
+   font-size: 2em;
+   margin-right: 10px;
+   font-weight: 600;
+}
+
+#join-body {
+   width: 550px;
+   height: auto;
+   font-size: 16px;
+   float: none;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   margin: 20px 450px 20px 500px;
+}
+
+#join1-button .btn-secondary {
+   border-radius: 30px;
+   border: 1px solid #05C3A7;
+   background-color: #05C3A7;
+   color: #fff;
+   font-size: 16px;
+   width: 450px;
+   height: 40px;
+   cursor: pointer;
+   outline: 0;
+   margin-top: 30px;
+}
+
+#join2-button .btn-secondary {
+   color: black;
+   font-size: 16px;
+   width: 450px;
+   height: 40px;
+   cursor: pointer;
+   outline: 0;
+   margin-top: 20px;
+   border: 0px #ffffff solid;
+   background-color: #ffffff;
+}
+
+#join1-button .btn-secondary:hover {
+   border: 1px solid #05C3A7;
+   background-color: #fff;
+   color: #05C3A7;
+}
+
+#join2-button .btn-secondary:hover {
+   text-decoration: underline;
+}
+
+.pass-join {
+   height: 50px;
+   margin: 0 auto;
+   font-size: 12px;
+   font-weight: 100;
+   color: #fff;
+   text-decoration: none;
+   white-space: nowrap;
+   font-size: 12px;
+   font-family: 'Noto Sans KR', sans-serif;
+   margin-bottom: 10px;
+}
+
+.pass-join a:hover {
+   color: #199683;
+}
+
+.sns-info>p {
+   font-size: 13px;
+   font-family: 'Noto Sans KR', sans-serif;
+   color: rgb(105, 105, 105);
+}
+
+.form-group {
+   margin: 30px auto;
+   width: 450px;
+}
+
+.pass-join>ul {
+   text-align: center;
+   margin: 0 auto;
+   display: inline-block;
+}
+
+.pass-join>ul>li {
+   display: inline-block;
+   /* float: right; */
+   margin: 20px 0 0 20px;
+}
+
+.pass-join>ul>li a {
+   font-size: 1.3em;
+}
+
+.pass-join>ul>li:last-child {
+   margin-left: 0;
+}
+
+.form-group .form-control {
+   padding: 15px;
+   width: 450px;
+   height: 45px;
+}
+
+.form-group>label {
+   margin-bottom: 9px;
+   font-weight: 400;
+}
+
+.box {
+   margin: 0 auto;
+   text-align: center;
+}
+
+.sns-button>a>img {
+   margin-top: 20px;
+   margin-left: 10px;
+   margin-right: 10px;
+   width: 40px;
+}
+
+.form-group>.uAgreecheck {
+   font-size: 14px;
+   font-family: 'Noto Sans KR', sans-serif;
+   color: rgb(105, 105, 105);
+   font-weight: 100;
+   /* display: flex; */
+   width: 400px;
+   margin: 30px auto;
+   text-align: center;
+}
+
+.form-group>.uAgreecheck>.uAgreecheck-label>p {
+   margin-left: 7px;
+   margin-right: 10px;
+}
+
+.form-group>.uAgreecheck>.uAgreecheck-label>p>span {
+   font-size: 14px;
+   font-family: 'Noto Sans KR', sans-serif;
+   color: #05C3A7;
+}
+/* .form-group > .uAgreecheck > .uAgreecheck-label > a {
+    font-size:12px; 
+} */
+.uPic {
+   background-color: #05C3A7;
+}
+/*------     ߰     -------*/
+#userpic-wrapper {
+   margin: 0 auto;
+   width: 180px;
+   height: 180px;
+   overflow: hidden;
+   outline: 0;
+   position: relative;
+}
+
+#thumb-img {
+   border: none;
+   width: 180px;
+   height: 180px;
+   border-radius: 50%;
+   object-fit: cover;
+   position: absolute;
+   background: linear-gradient(45deg, #05c3a73b, #05C3A7);
+}
+
+.click-icon {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   width: 35px;
+   height: 35px;
+   border-radius: 50%;
+   cursor: pointer;
+   background-color: #5AD6C4;
+   text-align: center;
+}
+
+.fa-camera {
+   padding-top: 7px;
+   font-size: 25px;
+   color: white;
+}
+
+#uPic {
+   display: none;
+}
+/*------     ߰  Ϸ -------*/
+.form-group>#address-group {
+   display: inline-block;
+   width: 450px;
+}
+
+.form-group>#address-group>#uAddress {
+   float: left;
+   margin-top: 9px;
+   width: 350px;
+   margin-right: 10px;
+   margin-bottom: 9px;
+   margin-top: 9px;
+}
+
+.form-group>#address-group>label {
+   display: block;
+   font-weight: 400;
+}
+
+#address-group #searchBtn {
+   font-size: 14px;
+   font-family: 'Noto Sans KR', sans-serif;
+   width: 90px;
+   border-radius: 3px;
+   border: 1px solid #05C3A7;
+   background-color: #05C3A7;
+   color: #fff;
+   height: 45px;
+   margin-top: 10px;
+   float: left;
+}
+
+#address-group #searchBtn:hover {
+   border: 1px solid #05C3A7;
+   background-color: #fff;
+   color: #05C3A7;
+}
+
+#map {
+   width: 450px;
+   height: 300px;
+   margin-top: 30px;
+   display: none;
+}
+
+#checklist #searchLoc {
+   width: 300px;
+   height: 30px;
+   border: 1px solid #e2e2e2;
+}
+/*------ Email     -------*/
+.mail_input {
+   font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+   margin-top: 9px;
+   padding: 15px;
+   width: 450px;
+   height: 45px;
+   box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+}
+
+.mail_check_wrap {
+   margin-top: 20px;
+}
+
+.mail_check_wrap {
+   box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+   margin-top: 9px;
+   width: 350px;
+   margin-right: 10px;
+   margin-bottom: 9px;
+   border: 1px solid black;
+   height: 45px;
+   float: left;
+   line-height: 1.42857143;
+   background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+}
+
+#mail_check_input_box_false {
+   background-color: #ebebe4;
+}
+
+#mail_check_input_box_true {
+   background-color: white;
+}
+
+.mail_check_input {
+   padding: 15px;
+   width: 100%;
+   height: 100%;
+   border: none;
+   font-size: 14px;
+}
+
+.mail_check_button {
+   font-family: 'Noto Sans KR', sans-serif;
+   font-size: 14px;
+   width: 90px;
+   border-radius: 3px;
+   border: 1px solid #05C3A7;
+   background-color: #05C3A7;
+   color: #fff;
+   height: 45px;
+   margin-top: 9px;
+   float: left;
+   line-height: 50px;
+   cursor: pointer;
+   text-align: center;
+}
+
+.mail_check_button:hover {
+   border: 1px solid #05C3A7;
+   background-color: #fff;
+   color: #05C3A7;
+}
+
+.correct {
+   color: green;
+}
+
+.incorrect {
+   color: red;
+}
+/* 중복 아이디가 존재하지 않는 경우 */
+.mail_name_re_1 {
+	color : green;
+	display : none;
+}
+
+/* 중복 아이디가 존재하는 경우 */
+.mail_name_re_2 {
+	color : red;
+	display : none;
+}

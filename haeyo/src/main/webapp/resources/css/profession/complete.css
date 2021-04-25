@@ -1,0 +1,36 @@
+@charset "UTF-8";
+#txtWrap {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+#txt {
+    margin: 100px 0 40px 0;
+}
+#txt > h1 {
+    font-size: 2.2em;
+    font-weight: 400;
+}
+#txt > h1 > span {
+    margin-top: 14px;
+    display: inline-block;
+    box-shadow: inset 0 -10px #fbf07d;
+}
+#mybtn {
+    border-radius: 30px;
+    border: 1px solid #05C3A7;
+    background-color: #fff;
+    color: #05C3A7;
+    font-size: 16px;
+    width: auto;
+    padding: 14px 18px;
+    cursor: pointer;
+    outline: 0;
+    margin-bottom: 100px;
+}
+
+#mybtn:hover {
+    border: 1px solid #05C3A7;
+    background-color: #05C3A7;
+    color: #fff;
+}

@@ -1,0 +1,48 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import 
+url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,th,td,form,fieldset,legend,input,label,textarea,select,button{margin:0; padding:0;}
+body,h1,h2,h3,h4,h5,h6 {font-size:12px; font-family: 'Noto Sans KR', sans-serif; color:#333;}
+a {text-decoration:none; color:#333;}
+img, fieldset {border:none; vertical-align: middle;}
+ul,ol,li {list-style: none;}
+strong,em,address {font-weight:normal; font-style:normal;}
+table {border-collapse:collapse;}
+
+.clearfix:after { /*날아갈경우 높이 지정*/
+    content:"";
+    display:block;
+    clear:both;
+}
+#agree_title {
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+    margin-top:30px;
+    margin-bottom: 20px;
+}
+#agree_title > h1 {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 10px;
+    font-weight: 500;
+}
+#agree-body {
+    width: 1000px;
+    /* height: 900px; */
+    border-radius: 10px;
+    border: 1px solid #dfdfdf;
+    font-size: 16px;
+    float: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 20px 300px 20px 265px;
+}
+#agree_content {
+    font-size: 15px; 
+    font-family: 'Noto Sans KR', sans-serif; 
+    color: rgb(36, 36, 36);
+    padding: 30px 40px 30px 40px;
+}
